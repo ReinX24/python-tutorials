@@ -39,10 +39,33 @@ email = "rein@gmail.com"
 
 # BOOLEAN
 
-is_online = True
-for_sale = False
-is_running = False
+# is_online = True
+# for_sale = False
+# is_running = False
 
-print(f"Are you online? {is_online}")
-print(f"Is this item for sale?: {for_sale}")
-print(f"Game running?: {is_running}")
+# print(f"Are you online? {is_online}")
+# print(f"Is this item for sale?: {for_sale}")
+# print(f"Game running?: {is_running}")
+
+# Using booleans in if statements
+# if is_running:
+#     print("The game is running!")
+# else:
+#     print("The game is over")
+
+# x, y, z = 1, 2, 3
+# x = y = z = 1
+# print(x)
+# print(y)
+# print(z)
+
+#INTEGER, FLOAT, STRING, & BOOLEAN
+myInt = 20
+myFloat = 19.5
+myString = "Bro Code"
+myBoolean = True
+
+print(myInt)
+print(myFloat)
+print(myString)
+print(myBoolean)
