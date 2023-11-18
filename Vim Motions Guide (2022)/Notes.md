@@ -21,3 +21,62 @@ This is some sample text.
 This is some sample text.
 This is some sample text.
 
+#### % sign to go the the ending bracket or parenthesis
+	(
+		This is some text.
+		This is some text.
+		This is some text.
+	)
+
+function main() {
+	console.log("This is some text")
+}
+
+#### { and } to jump between paragraphs
+
+This is some sample text.
+This is some sample text.
+This is some sample text.
+
+This is some sample text.
+This is some sample text.
+This is some sample text.
+
+This is some sample text.
+This is some sample text.
+This is some sample text.
+
+#### G to go to the bottom of the file and gg to go to the start
+#### v to go into select mode
+#### d to delete a line
+#### u to undo last action
+#### Ctrl V to select entire line 
+#### y to copy text, p to paste text
+#### p to paste after cursor, P to paste before cursor
+
+#### D(capital) to delete all text inside and after the cursor
+
+This is s
+This is some sa
+This is some sample text.
+
+#### u to undo commands, ctrl r to redo commands
+
+This is some sample text.
+This is some sample text.
+This is some sample text.
+
+#### Ctrl to select a line and 5j to select 5 lines including highlighted line
+
+This is some sample text.
+This is some sample text.
+This is some sample text.
+This is some sample text.
+This is some sample text.
+
+#### v, selecting text, and pressing c will remove text and go into insert mode 
+#### C(capital) to remove all text within and after cursor to go into insert mode
+
+is some even more text!
+This is some
+This is some even more text!
