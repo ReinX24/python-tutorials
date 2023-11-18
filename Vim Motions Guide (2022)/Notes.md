@@ -16,7 +16,7 @@ I am moving one word at a time using w and b.
 - W to move left by one word, does not stop at commas, etc.
 - B to move right by one word, does not stop at commas, etc.
 
-#### o to break into a new line and go into insert mode
+#### o to break into a new line after the cursor O to break into a new line above the cursor
 This is some sample text.
 This is some sample text.
 This is some sample text.
