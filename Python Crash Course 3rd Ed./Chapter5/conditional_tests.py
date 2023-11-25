@@ -46,7 +46,7 @@
 
 # Numerical tests involving equality and inequality, greater than
 # and less than, greater than or equal to, and less than or equal to
-user_age = int(input('Enter your age: '))
+# user_age = int(input('Enter your age: '))
 
 # if user_age > 18:
 # 	print('You are above 18!')
@@ -54,5 +54,33 @@ user_age = int(input('Enter your age: '))
 # 	print('You are below 18!')
 # if user_age >= 18:
 # 	print('You are 18 or above!')
-if user_age <= 18:
-	print('You are 18 or below!')
+# if user_age <= 18:
+# 	print('You are 18 or below!')
+
+# Using the 'and' keyword
+# is_busy = True
+# is_adult = True
+# if is_busy and is_adult:
+# 	print('Do not disturb!')
+# else:
+# 	print('Yes what is it?')
+
+# Using the 'or' keyword
+# my_age = 20
+# friend_age = 18
+# if my_age > 18 or friend_age > 18:
+# 	print('Either me or my friend is over 18.')
+# else:
+# 	print('Neither me or my friend is over 18.')
+
+# Testing whether an item is in a list or not
+# my_hobbies = ['programming', 'gaming', 'reading', 'sleeping', 'eating']
+# if 'programming' in my_hobbies:
+# 	print('One of my hobbies is programming!')
+# else:
+# 	print('Programming is not one of my hobbies...')
+
+# Testing whether an item is NOT in a list
+my_hobbies = ['programming', 'gaming', 'reading', 'sleeping', 'eating']
+if 'smoking' not in my_hobbies:
+	print('Smoking is not one of my hobbies.')
