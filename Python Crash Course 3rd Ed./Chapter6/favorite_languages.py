@@ -1,21 +1,21 @@
 # Dictionary that contains names and their favorite programming language
 # After the last key value pair, it is good practice to add a comma so
 # that adding a key value pair manually wil be easier
-favorite_languages = {
-	'jen': 'python',
-	'sarah': 'c',
-	'edward': 'rust',
-	'phil': 'python',
-}
+# favorite_languages = {
+# 	'jen': 'python',
+# 	'sarah': 'c',
+# 	'edward': 'rust',
+# 	'phil': 'python',
+# }
 
 # 6 - 6 Polling
-names = ['jen', 'rein', 'sarah', 'reinne', 'phil']
+# names = ['jen', 'rein', 'sarah', 'reinne', 'phil']
 
-for name in names:
-	if name in favorite_languages:
-		print(f"Thank you {name.title()} for taking the poll!")
-	else:
-		print(f"You are invited to take the poll {name.title()}.")
+# for name in names:
+# 	if name in favorite_languages:
+# 		print(f"Thank you {name.title()} for taking the poll!")
+# 	else:
+# 		print(f"You are invited to take the poll {name.title()}.")
 # End of 6 - 6 Polling
 
 # Making sure that there are no duplicate values printed using set()
@@ -39,10 +39,10 @@ for name in names:
 # for name in favorite_languages:
 # 	print(f"Hi {name.title()}.")
 
-	# Custom message to keys in our friends list
-	# if name in friends:
-	# 	language = favorite_languages.get(name).title()
-	# 	print(f"\t{name.title()}, I see you love {language}!")
+# Custom message to keys in our friends list
+# if name in friends:
+# 	language = favorite_languages.get(name).title()
+# 	print(f"\t{name.title()}, I see you love {language}!")
 
 # Checking if 'erin' took the poll
 # if 'erin' not in favorite_languages:
@@ -69,3 +69,20 @@ for name in names:
 # the default is looping through its keys
 # for name in favorite_languages:
 # 	print(name.title())
+
+# Putting lists inside dictionaries
+favorite_languages = {
+	'jen': ['python', 'rust'],
+	'sarah': ['c'],
+	'edward': ['rust', 'go'],
+	'phil': ['python', 'haskell'],
+}
+
+for name, languages in favorite_languages.items():
+	if len(languages) == 1:
+		print(
+			f"\n{name.title()}'s favorite language is {languages[0].title()}.")
+	else:
+		print(f"\n{name.title()}'s favorite languages are:")
+		for language in languages:
+			print(f"\t{language.title()}")
