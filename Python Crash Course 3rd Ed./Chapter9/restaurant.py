@@ -1,35 +1,54 @@
 class Restaurant:
 
-    def __init__(self, restaurant_name, cuisine_type):
-        self.restaurant_name = restaurant_name
-        self.cuisine_type = cuisine_type
-        self.number_served = 0
+	def __init__(self, restaurant_name, cuisine_type):
+		self.restaurant_name = restaurant_name
+		self.cuisine_type = cuisine_type
+		self.number_served = 0
 
-    def describe_restaurant(self):
-        print(f"\nName: {self.restaurant_name.title()}")
-        print(f"Cuisine: {self.cuisine_type.title()}")
+	def describe_restaurant(self):
+		print(f"\nName: {self.restaurant_name.title()}")
+		print(f"Cuisine: {self.cuisine_type.title()}")
 
-    def open_restaurant(self):
-        print(f"\n{self.restaurant_name.title()} is now open!")
+	def open_restaurant(self):
+		print(f"\n{self.restaurant_name.title()} is now open!")
 
-    def read_served(self):
-        print(f"\nCustormers Served: {self.number_served}")
+	def read_served(self):
+		print(f"\nCustomers Served: {self.number_served}")
 
-    def set_number_served(self, new_served):
-        self.number_served = new_served
+	def set_number_served(self, new_served):
+		self.number_served = new_served
 
-    def increment_number_served(self):
-        self.number_served += 1
+	def increment_number_served(self):
+		self.number_served += 1
 
+
+class IceCreamStand(Restaurant):
+	"""Creating an ice cream stand class."""
+
+	def __init__(self, restaurant_name, cuisine_type, *flavors):
+		super().__init__(restaurant_name, cuisine_type)
+		self.flavors = flavors
+
+	def show_flavors(self):
+		print("\nFlavors")
+		for flavor in self.flavors:
+			print(f"- {flavor}")
+
+
+# 9 - 6
+ice_cream_stand = IceCreamStand('mixue', 'sweets',
+								'strawberry', 'chocolate', 'vanilla')
+ice_cream_stand.describe_restaurant()
+ice_cream_stand.show_flavors()
 
 # 9-4 Number Served
-restaurant = Restaurant('yellow cab', 'fast food')
+# restaurant = Restaurant('yellow cab', 'fast food')
 
-restaurant.read_served()
-restaurant.set_number_served(5)
-restaurant.read_served()
-restaurant.increment_number_served()
-restaurant.read_served()
+# restaurant.read_served()
+# restaurant.set_number_served(5)
+# restaurant.read_served()
+# restaurant.increment_number_served()
+# restaurant.read_served()
 
 # Creating an instance of our Restaurant class
 # restaurant = Restaurant('yellow cab', 'fast food')
