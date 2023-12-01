@@ -36,10 +36,10 @@ class IceCreamStand(Restaurant):
 
 
 # 9 - 6
-ice_cream_stand = IceCreamStand('mixue', 'sweets',
-								'strawberry', 'chocolate', 'vanilla')
-ice_cream_stand.describe_restaurant()
-ice_cream_stand.show_flavors()
+# ice_cream_stand = IceCreamStand('mixue', 'sweets',
+# 								'strawberry', 'chocolate', 'vanilla')
+# ice_cream_stand.describe_restaurant()
+# ice_cream_stand.show_flavors()
 
 # 9-4 Number Served
 # restaurant = Restaurant('yellow cab', 'fast food')

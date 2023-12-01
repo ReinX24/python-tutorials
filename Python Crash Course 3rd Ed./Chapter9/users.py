@@ -45,11 +45,11 @@ class Privileges:
 
 
 # Creating an instance of the Admin class
-my_admin = Admin('rein', 'solis', 20,
-				 'information technology')
-my_admin.describe_user()
+# my_admin = Admin('rein', 'solis', 20,
+# 				 'information technology')
+# my_admin.describe_user()
 # my_admin.show_privileges()
-my_admin.privileges.show_privileges()
+# my_admin.privileges.show_privileges()
 
 # 9-5 Login Attempts
 # my_user = User('rein', 'solis', age=20, course='information technology')
