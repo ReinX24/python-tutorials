@@ -1,0 +1,8 @@
+In Python, you can store variables
+In Python, you can manipulate variables
+In Python, you can store variables in lists
+In Python, you can store variables in tuples
+In Python, you can store variables in sets
+In Python, you can convert a string into an integer or float
+In Python, you can accept user input
+In Python, you can read text files
