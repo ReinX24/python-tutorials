@@ -50,7 +50,7 @@ This is some sample text.
 #### v to go into select mode
 #### d to delete a line
 #### u to undo last action
-#### Ctrl V to select entire line 
+#### Ctrl V to select entire character 
 #### y to copy text, p to paste text
 #### p to paste after cursor, P to paste before cursor
 
@@ -66,7 +66,7 @@ This is some sample text.
 This is some sample text.
 This is some sample text.
 
-#### Ctrl to select a line and 5j to select 5 lines including highlighted line
+#### V to select a line and 5j to select 5 lines including highlighted line
 
 This is some sample text.
 This is some sample text.
