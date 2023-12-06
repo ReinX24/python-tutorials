@@ -4,7 +4,7 @@ import json
 
 def ask_name():
 	"""Ask the user for their name."""
-	user_name = input('Enter your name: ')
+	user_name = input('\nEnter your name: ')
 	return user_name
 
 
@@ -24,13 +24,44 @@ def ask_hobby():
 	return user_hobby
 
 
-path = Path('user_info.json')
-contents = (f"\nName: {ask_name()}"
-			f"\nAge: {ask_age()}"
-			f"\nHobby: {ask_hobby()}")
-contents = json.dumps(contents)
-path.write_text(contents)
+def ask_username(path):
+	"""Ask if the stored username is the same with the current user."""
+	stored_contents = path.read_text()
+	stored_contents = json.loads(stored_contents)
+	stored_username = stored_contents.get('name')
 
-stored_contents = path.read_text()
-stored_contents = json.loads(stored_contents)
-print(stored_contents)
+	is_running = True
+	while is_running:
+		user_choice = input(f'Is your name {stored_username}? (y/n): ')
+		if user_choice == 'y':
+			is_running = False
+			greet_user(stored_username)
+		elif user_choice == 'n':
+			is_running = False
+			record_new_user(path)
+		else:
+			print('Invalid Input!')
+
+
+def record_new_user(path):
+	"""Ask the user for a new username."""
+	contents = {}
+
+	contents['name'] = ask_name()
+	contents['age'] = ask_age()
+	contents['hobby'] = ask_hobby()
+
+	contents = json.dumps(contents)
+	path.write_text(contents)
+
+
+def greet_user(username):
+	"""Welcomes back the user."""
+	print(f'\nWelcome back, {username}!')
+
+
+path = Path('user_info.json')
+if path.exists():
+	ask_username(path)
+else:
+	record_new_user(path)
