@@ -1,14 +1,12 @@
 import sys
+from random import randint
 
 import pygame
-
 from settings import Settings
-
 from ship import Ship
-
-from character import Character
-
+# from character import Character
 from bullet import Bullet
+from alien import Alien
 
 
 class AlienInvasion:
@@ -41,6 +39,11 @@ class AlienInvasion:
 
 		# Creating a group that will hold our bullets.
 		self.bullets = pygame.sprite.Group()
+
+		# Creating a group that will hold our aliens.
+		self.aliens = pygame.sprite.Group()
+
+		self._create_fleet()
 
 	# Creating an instance of a character to be added to the middle.
 	# self.character = Character(self)
@@ -117,7 +120,42 @@ class AlienInvasion:
 			if bullet.rect.bottom <= 0:
 				self.bullets.remove(bullet)
 
-	# Get
+	def _create_fleet(self):
+		"""Create the fleet of aliens."""
+		# Create an alien and keep adding aliens until there is no room left.
+		# Spacing between aliens is one alien width.
+		alien = Alien(self)
+		# alien_width = alien.rect.width
+		alien_width, alien_height = alien.rect.size  # returns a tuple
+
+		current_x, current_y = alien_width, alien_height
+		while current_y < (self.settings.screen_height - 3 * alien_height):
+			while current_x < (self.settings.screen_width - 2 * alien_width):
+				self._create_alien(current_x, current_y)
+				current_x += 2 * alien_width
+
+			# Finished a row; reset x value and increment y value.
+			current_x = alien_width
+			current_y += 2 * alien_height
+
+		# Place the stars at random locations (13 - 2)
+		# star_amount = 0
+		# while star_amount < 45:
+		# 	random_x = randint(alien_width, self.settings.screen_width)
+		# 	random_y = randint(alien_height, self.settings.screen_height)
+		# 	self._create_alien(random_x, random_y)
+		# 	star_amount += 1
+
+	def _create_alien(self, x_position, y_position):
+		"""Create an alien and place it in the fleet."""
+		new_alien = Alien(self)
+
+		new_alien.x = x_position
+		new_alien.rect.x = x_position
+
+		new_alien.rect.y = y_position
+
+		self.aliens.add(new_alien)
 
 	def _update_screen(self):
 		"""Update images on the sceen, and flip to the new screen."""
@@ -130,6 +168,9 @@ class AlienInvasion:
 
 		# Draw the ship to our screen
 		self.ship.blitme()
+
+		# Draw the alien/s to our sceen.
+		self.aliens.draw(self.screen)
 
 		# Draw the character to our screen
 		# self.character.blitme()

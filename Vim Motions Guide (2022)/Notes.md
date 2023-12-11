@@ -80,3 +80,10 @@ This is some sample text.
 is some even more text!
 This is some
 This is some even more text!
+
+#### d and $ to delete all text after a word
+#### d and w to delete a single word (current word)
+#### d and b to delete a single word (word before)
+This is 
+This is some even text!
+This is some even more text!

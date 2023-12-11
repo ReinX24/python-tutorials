@@ -1,5 +1,4 @@
 import pygame
-
 from pygame.sprite import Sprite
 
 
@@ -18,28 +17,28 @@ class Bullet(Sprite):  # inheriting Sprite class attributes from pygame.
 								self.settings.bullet_height)
 
 		# Bullets start at the midtop of the ship instance.
-		# self.rect.midtop = ai_game.ship.rect.midtop
+		self.rect.midtop = ai_game.ship.rect.midtop
 
 		# Bullets start at mid left of the ship.
-		self.rect.midleft = ai_game.ship.rect.midleft
+		# self.rect.midleft = ai_game.ship.rect.midleft
 
 		# Store the bullet's position as a float.
-		# self.y = float(self.rect.y)
+		self.y = float(self.rect.y)
 
-		# Store the bullet's position in the x-axis.
-		self.x = float(self.rect.x)
+	# Store the bullet's position in the x-axis. (12 - 6)
+	# self.x = float(self.rect.x)
 
 	def update(self):
 		"""Move the bullet up the screen."""
 
 		# Update the exact position of the bullet.
-		# self.y -= self.settings.bullet_speed
+		self.y -= self.settings.bullet_speed
 		# Update the rect position.
-		# self.rect.y = self.y
+		self.rect.y = self.y
 
-		# Update the position of the bullet in the x-axis.
-		self.x += self.settings.bullet_speed
-		self.rect.x = self.x
+	# Update the position of the bullet in the x-axis. (12 - 6)
+	# self.x += self.settings.bullet_speed
+	# self.rect.x = self.x
 
 	def draw_bullet(self):
 		"""Draw the bullet to the screen."""

@@ -1,11 +1,6 @@
 import os.path
 import sys
 
-path = os.path.abspath("/")
-sys.path.append(path)
-
-print(sys.path)
-
 import pygame
 
 from settings import Settings
@@ -49,6 +44,7 @@ class SidewaysShooter:
 			self._check_events()
 			self.ship.update()
 			self._update_bullets()
+			# print(len(self.bullets))
 
 			# Make the game run at 60 frames per second, runs for loop 60 times
 			# per second.
@@ -108,11 +104,14 @@ class SidewaysShooter:
 		self.bullets.update()
 
 		# Get rid of bullets that have disappeared.
-		for bullet in self.bullets.copy():
-			if bullet.rect.bottom <= 0:
-				self.bullets.remove(bullet)
+		# for bullet in self.bullets.copy():
+		# 	if bullet.rect.bottom <= 0:
+		# 		self.bullets.remove(bullet)
 
-	# Get
+		# Delete bullets in the x-axis (12 - 6)
+		for bullet in self.bullets.copy():
+			if bullet.rect.right >= self.screen.get_width():
+				self.bullets.remove(bullet)
 
 	def _update_screen(self):
 		"""Update images on the screen, and flip to the new screen."""
