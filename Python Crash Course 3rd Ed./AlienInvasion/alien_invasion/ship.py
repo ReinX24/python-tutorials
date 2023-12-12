@@ -11,18 +11,18 @@ class Ship:
 		self.screen_rect = ai_game.screen.get_rect()
 
 		# Load the ship image and get its rect.
-		self.image = pygame.image.load('../images/ship.bmp')
-		# self.image = pygame.image.load('../images/ship-sideway.bmp')
+		# self.image = pygame.image.load('../images/ship.bmp')
+		self.image = pygame.image.load('../images/ship-sideway.bmp')
 		self.rect = self.image.get_rect()
 
 		# Start each new ship at the bottom center of the screen.
-		self.rect.midbottom = self.screen_rect.midbottom
+		# self.rect.midbottom = self.screen_rect.midbottom
 
 		# Start at the middle of the screen. (12 - 4)
 		# self.rect.center = self.screen_rect.center
 
 		# Start on the left side of the screen (12 - 6)
-		# self.rect.midleft = self.screen_rect.midleft
+		self.rect.midleft = self.screen_rect.midleft
 
 		# Start a float for the ship's exact horizontal position.
 		self.x = float(self.rect.x)
