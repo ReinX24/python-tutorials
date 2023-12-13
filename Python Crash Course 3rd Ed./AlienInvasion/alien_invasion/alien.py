@@ -37,8 +37,9 @@ class Alien(Sprite):
         screen_rect = self.screen.get_rect()
         return (self.rect.right >= screen_rect.right) or (self.rect.left <= 0)
 
-        # Check if any of the fleet hits the ground. (13 - 3)
-        # return self.rect.bottom >= screen_rect.bottom
+        # Check if any of the fleet hits the ground. (13 - 3).
+        # Also check if any of the fleet hits the ceiling (13 - 5).
+        # return (self.rect.bottom >= screen_rect.bottom) or (self.rect.top <= 0)
 
         # Check if any ships has hit the top or bottom of the screen.
         # return (self.rect.top >= screen_rect.top) or (self.rect.bottom >=
@@ -52,6 +53,6 @@ class Alien(Sprite):
         # Making the raindrop just move down (13 - 3)
         # self.rect.y += self.settings.fleet_direction
 
-        # Make the fleet move sidewards towards the ship.
+        # Make the fleet move up and down instead of sideways (13 - 5).
         # self.y += self.settings.alien_speed * self.settings.fleet_direction
         # self.rect.y = self.y
