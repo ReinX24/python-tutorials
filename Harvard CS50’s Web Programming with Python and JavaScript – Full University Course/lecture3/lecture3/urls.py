@@ -22,4 +22,5 @@ urlpatterns = [
 	path('admin/', admin.site.urls),
 	# This imports the urls that we can access in the hello directory.
 	path('hello/', include("hello.urls")),
+	path('newyear/', include("newyear.urls"))
 ]
