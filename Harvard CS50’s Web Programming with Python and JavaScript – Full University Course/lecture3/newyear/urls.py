@@ -1,8 +1,9 @@
 from django.urls import path
-from . import views  # importing the views module.
+from . import views
 
 urlpatterns = [
 	# Root directory path, name parameter is optional.
-	path("", views.index, name="index"),  # http://127.0.0.1:8000/newyear
-	path("<str:name>", views.hello_world, name="helloworld")
+	# http://127.0.0.1:8000/newyear
+	path("", views.index, name="index"),
+	path("<str:name>", views.hello_world, name="helloworld"),
 ]
