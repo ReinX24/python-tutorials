@@ -85,5 +85,32 @@ This is some even more text!
 #### d and w to delete a single word (current word)
 #### d and b to delete a single word (word before)
 This is 
-This is some even text!
-This is some even more text!
+This is some more text!
+This is even more text!
+
+#### d i w deletes a word and leaves a space
+#### d a w deletes a word without leaving a space
+ is some sample text.
+is some sample text.
+This is some sample text.
+
+#### deleting parenthesis with d a ) or d a (
+function main(    ) { }
+
+
+#### deleting an entire paragraph with d a p
+
+This is some sample text.
+This is some sample text.
+This is some sample text.
+This is some sample text.
+
+#### to delete text in quotes, d i ", also works for others like d a '
+console.log("This is some text")
+console.log('This is some text')
+
+#### x to delete a character under the cursor
+This is sample text.
+This is some text.
+
+#### To open tutor, enter nvim +Tutor in the terminal
