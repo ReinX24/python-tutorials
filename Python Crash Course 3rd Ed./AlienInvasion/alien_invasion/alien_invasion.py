@@ -9,6 +9,7 @@ from ship import Ship
 # from character import Character
 from bullet import Bullet
 from alien import Alien
+from button import Button
 
 
 class AlienInvasion:
@@ -53,8 +54,11 @@ class AlienInvasion:
 		# Creating an instance of a character to be added to the middle.
 		# self.character = Character(self)
 
-		# Start Alien Invasion in an active state
-		self.game_active = True
+		# Start Alien Invasion in an inactive state.
+		self.game_active = False
+
+		# Make the play button.
+		self.play_button = Button(self, "Play")
 
 	def run_game(self):
 		"""Start the main loop for the game."""
@@ -294,6 +298,10 @@ class AlienInvasion:
 
 		# Draw the character to our screen
 		# self.character.blitme()
+
+		# Draw the play button if the game is inactive.
+		if not self.game_active:
+			self.play_button.draw_button()
 
 		# Make the most recently drawn screen visible.
 		pygame.display.flip()
