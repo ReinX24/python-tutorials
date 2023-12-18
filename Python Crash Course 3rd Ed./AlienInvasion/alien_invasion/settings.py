@@ -15,8 +15,12 @@ class Settings:
 
 		# Bullet settings
 		self.bullet_speed = 2.5
-		self.bullet_width = 3
-		self.bullet_height = 15
+		# self.bullet_width = 3
+		# self.bullet_height = 15
+
+		# Horizontal bullets
+		self.bullet_width = 15
+		self.bullet_height = 3
 
 		# Making the bullet into a horizontal rectangle. (12 - 6)
 		# self.bullet_width = 15
@@ -27,6 +31,14 @@ class Settings:
 
 		# Alien settings
 		self.alien_speed = 1.0
-		self.fleet_drop_speed = 100
+		self.fleet_drop_speed = 10
 		# fleet direction of 1 represents right; -1 represents left.
 		self.fleet_direction = 1
+
+		# Target settings  (14 - 2)
+		self.target_width = 15
+		self.target_height = 120
+		self.target_color = (180, 60, 10)
+		self.target_speed = 1.5
+
+		self.miss_limit = 3
