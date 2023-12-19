@@ -11,6 +11,7 @@ from bullet import Bullet
 from alien import Alien
 from button import Button
 from target import Target
+from easy_button import EasyButton
 
 
 class AlienInvasion:
@@ -50,7 +51,7 @@ class AlienInvasion:
 		# Creating a group that will hold our aliens.
 		self.aliens = pygame.sprite.Group()
 
-		self._create_fleet()
+		# self._create_fleet()
 
 		# Creating an instance of a character to be added to the middle.
 		# self.character = Character(self)
@@ -59,10 +60,13 @@ class AlienInvasion:
 		self.game_active = False
 
 		# Create a Target instance to be used for practice target.
-		# self.practice_target = Target(self)
+		self.practice_target = Target(self)
 
 		# Make the play button.
 		self.play_button = Button(self, "Play")
+
+		self.easy_button = EasyButton(self, "Easy")
+		# TODO: add buttons for normal and hard
 
 	def run_game(self):
 		"""Start the main loop for the game."""
@@ -73,7 +77,7 @@ class AlienInvasion:
 				self.ship.update()
 				self._update_bullets()
 				self._update_aliens()
-			# self.practice_target.update()
+				self.practice_target.update()
 
 			# Printing the amount of bullets on screen to our console.
 			# print(len(self.bullets))
@@ -105,9 +109,8 @@ class AlienInvasion:
 		# to make sure that when we press the 'Play' button area while we are
 		# playing, it does not reset the game.
 		if button_clicked and not self.game_active:
-			# Reset the game settings.
-			self.settings.initialize_dynamic_settings()
 			self._start_game()
+		# TODO: add events to buttons
 
 	def _start_game(self):
 		"""Starts the game."""
@@ -124,11 +127,11 @@ class AlienInvasion:
 		self.aliens.empty()
 
 		# Create a new fleet and center the ship.
-		self._create_fleet()
+		# self._create_fleet()
 		self.ship.center_ship()
 
 		# Center the target when a new game is made (14 - 2)
-		# self.practice_target.center_target()
+		self.practice_target.center_target()
 
 		# Hide the mouse cursor when the game starts
 		pygame.mouse.set_visible(False)
@@ -177,17 +180,17 @@ class AlienInvasion:
 
 		# Get rid of bullets that have disappeared.
 		for bullet in self.bullets.copy():
-			if bullet.rect.bottom <= 0:
+			# if bullet.rect.bottom <= 0:
+			# 		self.bullets.remove(bullet)
+			# Check if any of the bullets have missed the target
+			if bullet.rect.right > self.settings.screen_width:
 				self.bullets.remove(bullet)
-		# Check if any of the bullets have missed the target
-		# if bullet.rect.right > self.settings.screen_width:
-		# 	self.bullets.remove(bullet)
-		# 	self._increment_misses()
+				self._increment_misses()
 
 		self._check_bullet_alien_collisions()
 
-	# Check if any of our bullets connect with our Target (14 - 2)
-	# self._check_bullet_target_collisions()
+		# Check if any of our bullets connect with our Target (14 - 2)
+		self._check_bullet_target_collisions()
 
 	def _check_bullet_target_collisions(self):
 		"""
@@ -215,12 +218,11 @@ class AlienInvasion:
 		collisions = pygame.sprite.groupcollide(self.bullets, self.aliens,
 												True, True)
 
-		# Check if there are any aliens left.
-		if not self.aliens:
-			# Destroy existing bullets and create new fleet.
-			self.bullets.empty()
-			self._create_fleet()
-			self.settings.increase_speed()  # increase the speed of the game.
+	# Check if there are any aliens left.
+	# if not self.aliens:
+	# Destroy existing bullets and create new fleet.
+	# self.bullets.empty()
+	# self._create_fleet()
 
 	def _update_aliens(self):
 		"""
@@ -248,7 +250,7 @@ class AlienInvasion:
 			self.aliens.empty()
 
 			# Create a new fleet and center the ship.
-			self._create_fleet()
+			# self._create_fleet()
 			self.ship.center_ship()
 
 			# Pause the game for .5 seconds
@@ -368,11 +370,12 @@ class AlienInvasion:
 		# self.character.blitme()
 
 		# Draw a Target to our screen (14 - 2)
-		# self.practice_target.draw_target()
+		self.practice_target.draw_target()
 
 		# Draw the play button if the game is inactive.
 		if not self.game_active:
 			self.play_button.draw_button()
+			self.easy_button.draw_button()
 
 		# Make the most recently drawn screen visible.
 		pygame.display.flip()

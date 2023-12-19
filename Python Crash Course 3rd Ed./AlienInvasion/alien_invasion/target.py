@@ -28,9 +28,12 @@ class Target:
 		self.y += self.direction * self.settings.target_speed
 
 		if self.rect.top < 0:
+			# Increase speed when changing directions.
+			self.settings.increase_speed()
 			self.rect.top = 0
 			self.direction = 1
 		elif self.rect.bottom > self.screen_rect.bottom:
+			self.settings.increase_speed()
 			self.rect.bottom = self.screen_rect.bottom
 			self.direction = -1
 
@@ -40,6 +43,8 @@ class Target:
 		"""Center the target on the right side of the screen."""
 		self.rect.midright = self.screen_rect.midright
 		self.y = float(self.rect.y)  # makes movement smoother
+
+		self.settings.initialize_dynamic_settings()
 
 	def draw_target(self):
 		"""Draw the target to our screen."""

@@ -12,8 +12,13 @@
 
 <body>
 
-    <h1>Test</h1>
-
+    <!-- Looping over our tasks variable passed in from views.py using Django template system -->
+    {% for task in tasks %}
+    <ul>
+        <li>{{ task }}</li>
+    </ul>
+    {% endfor %}
+    <!-- Remember to end the loop with python  -->
 </body>
 
 </html>
