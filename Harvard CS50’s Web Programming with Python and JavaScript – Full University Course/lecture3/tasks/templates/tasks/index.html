@@ -1,24 +1,20 @@
-{% load static %}
+<!-- Extends the layout.html file, for reusing redundant html code. -->
+{% extends "tasks/layout.html" %}
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tasks</title>
-    <link rel="stylesheet" href="{% static 'tasks/style.css' %}">
-</head>
-
-<body>
-
-    <!-- Looping over our tasks variable passed in from views.py using Django template system -->
+{% block body %}
+<!-- Looping over our tasks variable passed in from views.py using Django template system .-->
+<h1>Tasks</h1>
+<ul>
     {% for task in tasks %}
-    <ul>
-        <li>{{ task }}</li>
-    </ul>
+    <li>{{ task }}</li>
+    <!-- Checks if the list is empty. -->
+    {% empty %}
+        <li>No tasks.</li>
     {% endfor %}
     <!-- Remember to end the loop with python  -->
-</body>
-
-</html>
+</ul>
+<!-- Link to a url called 'add' in urls.py file, this uses the 'name' parameter. 
+This also makes use of the app name 'tasks' in urls.py to make the link it is 
+referring to more specific.-->
+<a href="{% url 'tasks:add' %}">Add a New Task</a>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "tasks/layout.html" %}
+
+{% block body %}
+<h1>Add Task</h1>
+<form action="{% url 'tasks:add' %}" method="post">
+    <!-- This csrf_token is for validating the form and making sure 
+            that the response is sent to us properly. -->
+    {% csrf_token %}
+
+    <!-- Inserting a form generated from our views.py file. -->
+    {{ form }}
+
+    <!-- <input type="text" name="task"> -->
+
+    <input type="submit" value="Submit">
+
+</form>
+<a href="{% url 'tasks:index' %}">View Tasks</a>
+{% endblock %}

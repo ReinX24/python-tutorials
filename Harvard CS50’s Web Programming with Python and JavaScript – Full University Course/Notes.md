@@ -14,3 +14,5 @@ following directory style in the app folder: templates/APP_NAME/HTML_FILE.
 
 For static files such as CSS files, we store these under the 'static' folder in our app folder.
 Example: newyear/APP_NAME/CSS_FILE.
+
+Creating a table where our data from our Django project will be stored: python3 manage.py migrate

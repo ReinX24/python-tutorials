@@ -1,4 +1,5 @@
-h1 {
+/* Note: sometimes the CSS might not load immediately, to fix this press
+Ctrl + Shift + F5 to refresh the cache of the browser and refresh CSS. */
+body {
     font-family: 'Courier New', Courier, monospace;
-    text-align: center;
 }

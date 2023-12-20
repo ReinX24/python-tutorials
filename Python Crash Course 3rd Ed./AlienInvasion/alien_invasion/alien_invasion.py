@@ -11,6 +11,9 @@ from bullet import Bullet
 from alien import Alien
 from button import Button
 from target import Target
+from easy_button import EasyButton
+from normal_button import NormalButton
+from hard_button import HardButton
 
 
 class AlienInvasion:
@@ -60,6 +63,10 @@ class AlienInvasion:
 
 		# Create a Target instance to be used for practice target.
 		# self.practice_target = Target(self)
+
+		self.easy_button = EasyButton(self, "Easy")
+		self.normal_button = NormalButton(self, "Normal")
+		self.hard_button = HardButton(self, "Hard")
 
 		# Make the play button.
 		self.play_button = Button(self, "Play")
@@ -373,6 +380,9 @@ class AlienInvasion:
 		# Draw the play button if the game is inactive.
 		if not self.game_active:
 			self.play_button.draw_button()
+			self.easy_button.draw_button()
+			self.normal_button.draw_button()
+			self.hard_button.draw_button()
 
 		# Make the most recently drawn screen visible.
 		pygame.display.flip()

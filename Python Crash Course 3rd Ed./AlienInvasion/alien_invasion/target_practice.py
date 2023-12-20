@@ -12,6 +12,8 @@ from alien import Alien
 from button import Button
 from target import Target
 from easy_button import EasyButton
+from normal_button import NormalButton
+from hard_button import HardButton
 
 
 class AlienInvasion:
@@ -65,9 +67,6 @@ class AlienInvasion:
 		# Make the play button.
 		self.play_button = Button(self, "Play")
 
-		self.easy_button = EasyButton(self, "Easy")
-		# TODO: add buttons for normal and hard
-
 	def run_game(self):
 		"""Start the main loop for the game."""
 		while True:
@@ -110,7 +109,6 @@ class AlienInvasion:
 		# playing, it does not reset the game.
 		if button_clicked and not self.game_active:
 			self._start_game()
-		# TODO: add events to buttons
 
 	def _start_game(self):
 		"""Starts the game."""
