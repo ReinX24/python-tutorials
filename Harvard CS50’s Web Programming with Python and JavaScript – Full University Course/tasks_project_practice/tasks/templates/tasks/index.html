@@ -1,13 +1,19 @@
 {% extends "tasks/layout.html" %}
 
 {% block body %}
-<h1>Tasks</h1>
-<ul>
-    {% for task in tasks %}
-    <li>{{ task }}</li>
-    {% empty %}
-    <li>No tasks.</li>
-    {% endfor %}
-</ul>
-<a href="{% url 'tasks:add' %}">View Tasks</a>
+<div class="container display-6">
+    <div class="card bg-secondary mt-4">
+        <h1 class="card-header">Tasks</h1>
+        <div class="card-body">
+            <ul>
+                {% for task in tasks %}
+                <li>{{ task }}</li>
+                {% empty %}
+                <li>No tasks.</li>
+                {% endfor %}
+            </ul>
+            <a href="{% url 'tasks:add' %}">Add Tasks</a>
+        </div>
+    </div>
+</div>
 {% endblock %}

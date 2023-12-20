@@ -1,8 +1,22 @@
-
 {% extends "tasks/layout.html" %}
 
 {% block body %}
-<h1>Add Task</h1>
 
-<a href="{% url 'tasks:index' %}">View Tasks</a>
+<div class="container display-6">
+    <div class="card bg-secondary mt-4">
+        <h1 class="card-header">Add Task</h1>
+        <div class="card-body d-flex justify-content-between">
+            <form action="{% url 'tasks:add' %}" method="post">
+                <!-- token to make sure that each session is different. -->
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ form }}
+                    <input type="submit" class="btn btn-primary btn-lg my-4" value="Submit">
+                </div>
+                <a href="{% url 'tasks:index' %}" class="card-link">View Tasks</a>
+        </div>
+    </div>
+</div>
+
+</form>
 {% endblock %}
