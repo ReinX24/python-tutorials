@@ -14,6 +14,7 @@ from target import Target
 from easy_button import EasyButton
 from normal_button import NormalButton
 from hard_button import HardButton
+from scoreboard import Scoreboard
 
 
 class AlienInvasion:
@@ -71,6 +72,9 @@ class AlienInvasion:
 		# Make the play button.
 		self.play_button = Button(self, "Play")
 
+		# Create an instance to store game statistics, and create a scoreboard.
+		self.score_board = Scoreboard(self)
+
 	def run_game(self):
 		"""Start the main loop for the game."""
 		while True:
@@ -108,13 +112,23 @@ class AlienInvasion:
 	def _check_play_button(self, mouse_pos):
 		"""Start a new game when the player clicks Play."""
 		button_clicked = self.play_button.rect.collidepoint(mouse_pos)
+		easy_game = self.easy_button.rect.collidepoint(mouse_pos)
+		normal_game = self.normal_button.rect.collidepoint(mouse_pos)
+		hard_game = self.hard_button.rect.collidepoint(mouse_pos)
 		# Checks if the button is clicked and the game is not running. This is
 		# to make sure that when we press the 'Play' button area while we are
 		# playing, it does not reset the game.
 		if button_clicked and not self.game_active:
 			# Reset the game settings.
-			self.settings.initialize_dynamic_settings()
+			# self.settings.initialize_dynamic_settings()
 			self._start_game()
+			self.score_board.prep_score()  # reset the score shown.
+		elif easy_game and not self.game_active:
+			self.settings.initialize_easy_settings()
+		elif normal_game and not self.game_active:
+			self.settings.initialize_dynamic_settings()
+		elif hard_game and not self.game_active:
+			self.settings.initialize_hard_settings()
 
 	def _start_game(self):
 		"""Starts the game."""
@@ -221,6 +235,12 @@ class AlienInvasion:
 		# true).
 		collisions = pygame.sprite.groupcollide(self.bullets, self.aliens,
 												True, True)
+
+		# Checks if any of the bullets hits the aliens.
+		if collisions:
+			for aliens in collisions.values():
+				self.stats.score += self.settings.alien_points * len(aliens)
+				self.score_board.prep_score()
 
 		# Check if there are any aliens left.
 		if not self.aliens:
@@ -370,6 +390,9 @@ class AlienInvasion:
 
 		# Draw the alien/s to our sceen.
 		self.aliens.draw(self.screen)
+
+		# Draw the score information.
+		self.score_board.show_score()
 
 		# Draw the character to our screen
 		# self.character.blitme()

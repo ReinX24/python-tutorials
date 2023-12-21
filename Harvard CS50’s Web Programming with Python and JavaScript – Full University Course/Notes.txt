@@ -1,0 +1,107 @@
+# Notes for CS50's Web Programming Course
+
+Installing Django: pip3 install Django
+
+Creating a Django Project: django-admin startproject PROJECT_NAME
+
+Running the Django Project: python3 manage.py runserver
+
+Creating an app in our Django Project: python3 manage.py startapp APP_NAME
+
+When creating a new app and rendering an html page, remember to add project name in settings.py
+under INSTALLED_APPS. After that also make sure that the location of the html file follows the
+following directory style in the app folder: templates/APP_NAME/HTML_FILE.
+
+For static files such as CSS files, we store these under the 'static' folder in our app folder.
+Example: newyear/APP_NAME/CSS_FILE.
+
+Creating a table where our data from our Django project will be stored: python3 manage.py migrate
+
+SQLite Types
+- TEXT
+- NUMERIC (GENERAL NUMBERS, CAN BE REPRESENTED AS INTEGERS OR REAL. BOOLEAN VALUE OR DATE)
+- INTEGER (WHOLE NUMBERS)
+- REAL (DECIMAL NUMBERS)
+- BLOB (BINARY LARGE OBJECT, 0S OR 1S)
+
+Creating and opening a sqlite file
+touch FILE_NAME.sql
+sqlite3 FILE_NAME.sql
+
+In our example, we will be creating a database of flights
+touch flights.sql
+sqlite3 flights.sql
+
+Creating a table in our sqlite file
+CREATE TABLE flights (
+	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	origin TEXT NOT NULL,
+	destination TEXT NOT NULL,
+	duration INTEGER NOT NULL,
+);
+
+Primary key is used to uniquely identify each record within our database, this automatically
+increments as we add more records.
+
+Syntax for other attributes are: VARIABLE_NAME DATA_TYPE NOT NULL (cannot be empty),
+
+To look for tables within the folder, we use '.tables' in the command line.
+
+To add a record or row to our sqlite database, we do the following:
+INSERT INTO flights (origin, destination, duration) VALUES ("New York", "London", 415);
+
+When we do SELECT * FROM flights; it now shows the row we inserted. 
+
+When we run this command, the data is not formatted neatly, to do this we need to type in the
+following commands:
+.mode columns
+.headers yes
+
+Selecting certain rows where a variable is present using the WHERE keyword
+SELECT * FROM flights WHERE origin = "New York";
+
+Selecting flights where the duration is greater than 500
+SELECT * FROM flights WHERE duration > 500;
+
+Selecting flights where the duration is greater than 500 and the destination is Paris
+SELECT * FROM flights WHERE duration > 500 AND destination = "Paris";
+
+Selecting flights where the duration is greater than 500 or the destination is Paris
+SELECT * FROM flights WHERE duration > 500 OR destination = "Paris";
+
+Selecting flights where the origin is either from New York or Lima
+SELECT * FROM flights WHERE origin in ("New York", "Lima");
+
+We can also select a flight with a wildcard or generic variable that is interchangeable
+The code below checks if there is a letter 'a' in the origin column record
+SELECT * FROM flights WHERE origin LIKE "%a%";
+
+Other available functions for sqlite:
+- AVERAGE: SELECT AVG(duration) FROM flights;
+- COUNT: SELECT COUNT(duration) FROM flights;
+- MAX: SELECT MAX(duration) FROM flights;
+- MIN: SELECT MAX(duration) FROM flights;
+- SUM: SELECT SUM(duration) FROM flights;
+...
+
+Changing the information within our database using the UPDATE command
+
+The code below changes the duration of a flight where the origin is in New York
+and the destination is in London. It changes the duration to 430.
+
+Note: We broke the code into lines to make it easier to read, when typing it in the command
+line we could just put all of these in one line.
+UPDATE flights 
+	SET duration = 430
+	WHERE origin = "New York"
+	AND destination = "London";
+
+Using the DELETE command to delete data from our table
+DELETE FROM flights WHERE destination = "Tokyo";
+
+Other clauses:
+- LIMIT
+- ORDER BY
+- GROUP BY
+- HAVING
+...
