@@ -17,6 +17,8 @@ Example: newyear/APP_NAME/CSS_FILE.
 
 Creating a table where our data from our Django project will be stored: python3 manage.py migrate
 
+# SQLite Database
+
 SQLite Types
 - TEXT
 - NUMERIC (GENERAL NUMBERS, CAN BE REPRESENTED AS INTEGERS OR REAL. BOOLEAN VALUE OR DATE)
@@ -100,8 +102,142 @@ Using the DELETE command to delete data from our table
 DELETE FROM flights WHERE destination = "Tokyo";
 
 Other clauses:
-- LIMIT
-- ORDER BY
-- GROUP BY
-- HAVING
+- LIMIT: SELECT * FROM flights LIMIT 2;
+- ORDER BY: SELECT * FROM flights ORDER BY duration;
+- GROUP BY: SELECT * FROM flights GROUP BY origin;
+- HAVING: SELECT COUNT(duration) FROM flights GROUP BY duration HAVING COUNT(duration) > 0;
 ...
+
+Different JOINs:
+- JOIN / INNER JOIN
+- LEFT OUTER JOIN
+- RIGHT OUTER JOIN
+- FULL OUTER JOIN
+
+Creating an index using CREATE INDEX
+CREATE INDEX name_index ON passengers (last);
+
+# Using Django Database
+
+Creating an Django airline project with a flights app within it.
+django-admin startproject airline
+python3 manage.py startapp flights
+python3 manage.py runserver
+
+When creating a new project in Django, we will need to go into the models.py file of our app in
+order to configure the different parameters that our databse will be using.
+
+Once this has been done, we need to migrate our database. To do this, we will need to execute the
+following command:
+python3 manage.py makemigrations
+
+This command will use the class and parameters provided in the models.py files of our app/s. It 
+will store the result in APP_NAME/migrations.
+
+After creating a migration, we will now be applying this migration and creating a table of it 
+using this command:
+python3 manage.py migrate
+
+This will create a db.sqlite3 file that will create a table using the parameters we provided in
+models.py in our app folder. To check if the table exists, we use sqlite3 db.sqlite3 to go into
+the SQL terminal and open the file. We then use the .tables command to see the differnt tables,
+int this case, our table from models.py is listed as flights_flight.
+
+Instead of using the SQL terminal, we will be using the python terminal to interact with our app.
+python3 manage.py shell
+
+After going into the python shell, we will now insert a record or row using the following commands:
+from flights.models import Flight
+f = Flight(origin="New York", destination="London", duration=415)
+f.save()
+
+To get all the existing flights within our database, use the following command in the python shell:
+Flight.objects.all()
+
+To see all the attributes of our Flight objects, we will be using our custom __str__ function in our
+models.py file:
+from flights.models import Flight
+flights = Flight.objects.all()
+flights
+
+Instead of just showing that it is a flight object, it will now show the attributes of each flight.
+
+To get the first flight, we use the first() function:
+flight = flights.first()
+
+We can also access the attributes of this flight:
+flight.id
+flight.origin
+flight.destination
+flight.duration
+
+Deleting the flight obeject we have created
+flight.delete()
+
+To exit the shell console, we use CTRL + D.
+
+To make sure that our database is up to date with our models.py file, we use the following commands:
+python3 manage.py makemigrations
+python3 manage.py migrate
+
+This creates another model inside migrations that we can use to create database records with attributes.
+
+Creating an Airport instance and adding to our database:
+python3 manage.py shell
+from flights.models import *
+jfk = Airport(code="JFK", city="New York")
+jfk.save()
+lhr = Airport(code="LHR", city="London")
+lhr.save()
+cdg = Airport(code="CDG", city="Paris")
+cdg.save()
+nrt = Airport(code="NRT", city="Tokyo")
+nrt.save()
+
+Adding a flight using our foreign keys that are within our Airport model:
+f = Flight(origin=jfk, destination=lhr, duration=415)
+f.save()
+f #  checking flight information
+
+We can also access these Flight attributes we have given:
+f.origin
+f.destination
+f.duration
+
+f.origin.city
+f.origin.code
+
+f.destination.city
+f.destination.code
+
+To get all the flights that have the destination of lhr, we use this command:
+lhr.arrivals.all()
+
+After saving our Flight object, this will now be available in our views.py file where we could pass
+it in an html file and be accessed by Django templates. To add another record, just repeat the code
+above with different parameters.
+
+To see all the airports saved, we use Airports.objects.all():
+python3 manage.py shell
+from flights.models import *
+Airport.objects.all()
+
+Filtering Airport list:
+Airport.objects.filter(city="New York")
+Airport.objects.get(city="New York")
+
+Creating another flight object
+jfk = Airport.objects.get(city="New York")
+cdg = Airport.objects.get(city="Paris")
+f = Flight(origin=jfk, destination=cdg, duration=435)
+f.save()
+
+To delete all records and reset the autoincrement in our database:
+SELECT * FROM flights_flight;
+DELETE FROM SQLITE_SEQUENCE WHERE name="flights_flight";
+
+Creating an admin account in our Django project:
+python3 manage.py createsuperuser
+
+This will prompt the user for a username, email, and password. When we run our django project again and
+go to /admin, we will be prompted to enter our username and password.
