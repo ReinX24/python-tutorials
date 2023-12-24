@@ -242,3 +242,6 @@ python3 manage.py createsuperuser
 This will prompt the user for a username, email, and password. When we run our django project again and
 go to /admin, we will be prompted to enter our username and password. Here, we could add another record 
 to our flights_airport table where the code is PVG and the city is Shanghai.
+
+When we are creating a Passenger instance in our admin console, we can select multiple flights by holding
+down the CTRL key and clicking on the flights that our Passenger will have.

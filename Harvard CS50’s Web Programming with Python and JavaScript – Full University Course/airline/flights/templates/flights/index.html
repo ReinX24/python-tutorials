@@ -3,8 +3,8 @@
 {% block body %}
 <h1>Flights</h1>
 <ul>
-    {% for flight in flights %}
     {% comment %} Go to a flight url and pass in flight id {% endcomment %}
+    {% for flight in flights %}
     <a href="{% url 'flight' flight.id %}">
         <li>Flight {{ flight.id }}: {{ flight.origin }} to {{ flight.destination }}</li>
     </a>

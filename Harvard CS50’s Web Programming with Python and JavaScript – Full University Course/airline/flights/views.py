@@ -17,7 +17,8 @@ def flight(request, flight_id):
     return render(request, "flights/flight.html", {
         "flight": flight,
         "passengers": flight.passengers.all(),
-        # Excluding all passengers who are already on the current flight page.
+        # Excluding all passengers in our database who are already on the 
+        # current flight.
         "non_passengers": Passenger.objects.exclude(flights=flight).all()
     })
 
@@ -25,7 +26,8 @@ def book(request, flight_id):
     if request.method == "POST":
         booked_flight = Flight.objects.get(pk=flight_id)
 
-        # Getting the new passenger object from a form.
+        # Getting the new passenger object from a form that returns the 
+        # passenger id.
         new_passenger = Passenger.objects.get(
                 pk=int(request.POST["passenger"])
             )
@@ -34,4 +36,5 @@ def book(request, flight_id):
         new_passenger.flights.add(booked_flight)
 
         # After the user has booked a flight, return to the flight page.
-        return HttpResponseRedirect(reverse("flight", args=(booked_flight.id)))
+        return HttpResponseRedirect(reverse("flight", 
+                                            args=(booked_flight.id,)))
