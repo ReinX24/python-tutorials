@@ -28,8 +28,15 @@ class Flight(models.Model):
     duration = models.IntegerField()
 
     def __str__(self):
-        # Returns a string representation of the Flight object
+        """ Returns a string representation of the Flight object """
         return f"{self.id}: {self.origin} to {self.destination}"
+    
+    def is_valid_flight(self):
+        """
+        Checks if the flight is valid by checking if the origin is not the same 
+        with the destination and if the duration is greater than or equal to 0.
+        """
+        return self.origin != self.destination and self.duration >= 0
 
 class Passenger(models.Model):
     """
