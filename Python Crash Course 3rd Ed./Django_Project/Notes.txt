@@ -1,0 +1,44 @@
+# Creating a virtual environment for our Django project
+This is so that our project will be contained in one environment which makes
+our code base cleaner.
+
+python3 -m venv ll_env
+
+# Activating the virtual environment
+We activate our virtual enviroment so that we can install packages that we
+will need for our Django project.
+
+source ll_env/bin/activate
+
+To deactivate, we simply just type in 'deactivate' in the console.
+
+# Installing Django
+After we have created our virtual environment, we will now be installing
+Django. Make sure that our virtual environment is running when we install
+Django in our directory.
+
+pip install --upgrade pip
+pip install django
+
+Remember, we can only run our Django project whenever our virtual environment
+is activated.
+
+# Creating a project
+Creating a project within our virtual environment itself (. at the end means
+that we create the project in the current directory).
+
+django-admin startproject ll_project .
+
+# Creating a database for our Django project
+
+python3 manage.py migrate
+
+# Viewing the project using the 'runserver' command
+
+python3 manage.py runserver
+
+To a different port if the default port is being used (8000), we can add the
+port we want to use for our webserver by adding a port number at the end of
+runserver.
+
+python3 manage.py runserver 8001
