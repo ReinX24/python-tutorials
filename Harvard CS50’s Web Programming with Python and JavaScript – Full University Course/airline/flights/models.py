@@ -36,7 +36,7 @@ class Flight(models.Model):
         Checks if the flight is valid by checking if the origin is not the same 
         with the destination and if the duration is greater than or equal to 0.
         """
-        return self.origin != self.destination or self.duration >= 0
+        return self.origin != self.destination and self.duration >= 0
 
 class Passenger(models.Model):
     """

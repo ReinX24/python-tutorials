@@ -245,3 +245,23 @@ to our flights_airport table where the code is PVG and the city is Shanghai.
 
 When we are creating a Passenger instance in our admin console, we can select multiple flights by holding
 down the CTRL key and clicking on the flights that our Passenger will have.
+
+# Opening a webpage and using its methods using selenium and its Chrome webdriver
+
+Go to /lecture7/selenium/ for this program
+
+from tests import *
+uri = file_uri("counter.html")
+driver.get(uri) # this opens the webpage in our browser
+
+We can also see the different attributes of our webpage
+
+driver.title # returns the title of the web page
+driver.page_source # returns the html content of the web page
+
+Getting an element from our webpage
+driver.find_element('id', 'increase')
+increase = driver.find_element('id', 'increase')
+
+Clicking on our increase button to increase the counter on the page
+increase.click()
