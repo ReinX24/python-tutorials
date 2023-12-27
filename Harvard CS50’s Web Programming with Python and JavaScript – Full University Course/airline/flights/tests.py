@@ -78,3 +78,29 @@ class FlightTestCase(TestCase):
         c = Client()
         response = c.get(f"/flights/{max_id + 1}")
         self.assertEqual(response.status_code, 404)
+
+    def test_flight_page_passengers(self):
+        """
+        Creating a passenger and checking if the flights page renders it 
+        properly.
+        """
+        f = Flight.objects.get(pk=1)
+        p = Passenger.objects.create(first="Alice", last="Adams")
+        f.passengers.add(p)
+
+        c = Client()
+        response = c.get(f"/flights/{f.id}")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.context["passengers"].count(), 1)
+
+    def test_flight_page_non_passengers(self):
+        """Creating a passenger object and testing non_passengers."""
+        f = Flight.objects.get(pk=1)
+        # Adding a passenger to our database but not to our flight.
+        p = Passenger.objects.create(first="Alice", last="Adams")
+
+        c = Client()
+        response = c.get(f"/flights/{f.id}")
+        self.assertEqual(response.status_code, 200)
+        # One passenger will not be on our flight (existing passenger).
+        self.assertEqual(response.context["non_passengers"].count(), 1)

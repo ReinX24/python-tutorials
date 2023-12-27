@@ -1,4 +1,5 @@
-from django.http import HttpResponseRedirect
+from django import forms
+from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import render
 from django.urls import reverse
 
@@ -13,7 +14,10 @@ def index(request):
 
 def flight(request, flight_id):
     """Render the attributes of a specific flight."""
-    flight = Flight.objects.get(pk=flight_id) # pk means primary key
+    try:
+        flight = Flight.objects.get(pk=flight_id) # pk means primary key
+    except Flight.DoesNotExist:
+        raise Http404("Flight not found.")
     return render(request, "flights/flight.html", {
         "flight": flight,
         "passengers": flight.passengers.all(),
