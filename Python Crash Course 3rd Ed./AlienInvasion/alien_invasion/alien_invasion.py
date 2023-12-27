@@ -122,9 +122,10 @@ class AlienInvasion:
 			# Reset the game settings.
 			# self.settings.initialize_dynamic_settings()
 			self._start_game()
-			self.score_board.prep_score()  # reset the score shown.
-			self.score_board.prep_level()
-			self.score_board.prep_ships()
+			# self.score_board.prep_score()  # reset the score shown.
+			# self.score_board.prep_level()
+			# self.score_board.prep_ships()
+			self.score_board.prep_images()
 		elif easy_game and not self.game_active:
 			self.settings.initialize_easy_settings()
 		elif normal_game and not self.game_active:
@@ -247,14 +248,18 @@ class AlienInvasion:
 
 		# Check if there are any aliens left.
 		if not self.aliens:
-			# Destroy existing bullets and create new fleet.
-			self.bullets.empty()
-			self._create_fleet()
-			self.settings.increase_speed()  # increase the speed of the game.
+			self.start_new_level()
 
-			# Increase level when we destroy all aliens.
-			self.stats.level += 1
-			self.score_board.prep_level()
+	def start_new_level(self):
+		"""Starts a new level"""
+		# Destroy existing bullets and create new fleet.
+		self.bullets.empty()
+		self._create_fleet()
+		self.settings.increase_speed()  # increase the speed of the game.
+
+		# Increase level when we destroy all aliens.
+		self.stats.level += 1
+		self.score_board.prep_level()
 
 	def _update_aliens(self):
 		"""
