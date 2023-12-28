@@ -80,3 +80,4 @@ of the class, in this case entry, and followed by an underscore and the
 word set.
 t.entry_set.all();
 
+# Using template filters to modify variables in our webpage (check topic.html).

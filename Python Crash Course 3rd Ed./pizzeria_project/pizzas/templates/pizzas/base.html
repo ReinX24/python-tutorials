@@ -4,15 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learning Logs</title>
+    <title>Pizzeria</title>
 </head>
 
 <body>
     <p>
-        <a href="{% url 'learning_logs:index' %}">Learning Log</a> -
-        <a href="{% url 'learning_logs:topics' %}">Topics</a>
+        <a href="{% url 'pizzas:index' %}">Pizzeria</a> |
+        <a href="{% url 'pizzas:pizzas' %}">Pizzas</a>
     </p>
-
     {% block content %}{% endblock content %}
 </body>
 
