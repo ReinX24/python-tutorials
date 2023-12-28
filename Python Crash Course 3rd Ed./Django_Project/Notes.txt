@@ -42,3 +42,41 @@ port we want to use for our webserver by adding a port number at the end of
 runserver.
 
 python3 manage.py runserver 8001
+
+# Creating an app in our Django project
+Activating our virtual environment and adding an app
+source ll_env/bin/activate
+python3 manage.py startapp learning_logs
+
+# Adding our models to our database and applying this to our Django project
+python3 manage.py makemigrations learning_logs
+python3 manage.py migrate
+
+# Adding a superuser to our project
+python3 manage.py createsuperuser
+
+# Looking at our stored models in our database and their records
+python3 manage.py shell
+from learning_logs.models import Topic
+Topic.object.all()
+
+# Getting all the Topic database records and iterating through them
+topics = Topic.object.all()
+for topic in topics:
+	print(topic.id, topic)
+
+# Output:
+1 Chess
+2 Rock Climbing
+
+# Getting a topic by their id and accessing their attributes
+t = Topic.objects.get(id=1)
+t.text
+t.date_added
+
+# We can also see the entries related to a Topic record in our database
+To access a foreign key relationship, we need to use the lowercase text
+of the class, in this case entry, and followed by an underscore and the
+word set.
+t.entry_set.all();
+
