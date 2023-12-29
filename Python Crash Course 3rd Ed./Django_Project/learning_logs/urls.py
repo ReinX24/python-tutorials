@@ -12,5 +12,9 @@ urlpatterns = [
     path('topics/', views.topics, name='topics'),
     # Detail page for a single topic, passes in a variable through 
     # <int:topic_id> is used in our topic function in our views module.
-    path('topics/<int:topic_id>/', views.topic, name='topic')
+    path('topics/<int:topic_id>/', views.topic, name='topic'),
+    # Page for adding a new topic.
+    path('new_topic/', views.new_topic, name='new_topic'),
+    # Page for adding a new entry.
+    path('new_entry/<int:topic_id>', views.new_entry, name='new_entry'),
 ]
