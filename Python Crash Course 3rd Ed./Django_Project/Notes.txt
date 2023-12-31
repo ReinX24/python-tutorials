@@ -81,3 +81,14 @@ word set.
 t.entry_set.all();
 
 # Using template filters to modify variables in our webpage (check topic.html).
+
+# CSRF (Cross-Site Request Forgery) Token
+When we look at the forms within our django apps, we can see than these forms
+contain a {% csrf_token %} template within them. This is so that each session
+that the user will have with the site will be unique, which in turn will prevent
+any malicious attack that the website may encounter.
+
+# No such column error
+One of the errors that I have encountered is the 'No such column error'. To fix
+this, I deleted my sqlite database and made a new one, this error may have been
+caused by changing the variable names in our models.py file.
