@@ -18,7 +18,9 @@ from django.contrib import admin
 from django.urls import include, path
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path("admin/", admin.site.urls),
     # Default site will lead to learning_logs.urls
-    path('', include('learning_logs.urls')),
+    path("", include("learning_logs.urls")),
+    # Accounts app url
+    path("accounts/", include("accounts.urls")),
 ]

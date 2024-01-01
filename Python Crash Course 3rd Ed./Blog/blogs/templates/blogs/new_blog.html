@@ -1,6 +1,8 @@
 {% extends 'blogs/base.html' %}
 
 {% block content %}
+<h2><a href="{% url 'blogs:blogs_page' %}">Blogs</a></h2>
+
 <p>Add new blog</p>
 <form action="{% url 'blogs:new_blog' %}" method="POST">
     {% csrf_token %}

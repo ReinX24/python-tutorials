@@ -9,6 +9,7 @@
         <h4>{{ post.title }}</h4>
         <p>{{ post.content|linebreaks }}</p>
         <p>{{ post.date_added }}</p>
+        <p><a href="{% url 'blogs:edit_post' post.id %}">Edit post</a></p>
     </li>
     {% empty %}
     <li>No posts added for this blog yet.</li>

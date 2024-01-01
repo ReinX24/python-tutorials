@@ -1,7 +1,8 @@
 {% extends 'blogs/base.html' %}
 
 {% block content %}
-<h2>{{ blog }}</h2>
+<h2><a href="{% url 'blogs:posts' blog.id %}">{{ blog }}</a></h2>
+
 <p>Add new post</p>
 <form action="{% url 'blogs:new_post' blog.id %}" method="POST">
     {% csrf_token %}

@@ -92,3 +92,13 @@ any malicious attack that the website may encounter.
 One of the errors that I have encountered is the 'No such column error'. To fix
 this, I deleted my sqlite database and made a new one, this error may have been
 caused by changing the variable names in our models.py file.
+
+# Setting records already stored in the database to an existing user
+python3 manage.py shell
+from django.contrib.auth.models import User
+User.objects.all() # see all created User accounts
+for user in User.objects.all()
+	print(user.username, user.id)
+
+# Migrating the existing records in our database to an already existing user
+python3 manage.py makemigrations learning_logs
