@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.http import Http404
 
 from .models import Topic, Entry
 from .forms import TopicForm, EntryForm
@@ -15,7 +16,9 @@ def index(request):
 def topics(request):
     """Page for showing the all the stored topics in our database."""
     # Getting all the stored Topic records and sorting them by date_added.
-    topics = Topic.objects.order_by("date_added")
+    # topics = Topic.objects.order_by("date_added")
+    # Gets all the topics related to the owner (in models.py).
+    topics = Topic.objects.filter(owner=request.user).order_by("date_added")
     # Storing our data in a key value pair.
     context = {"topics": topics}
     # Passing our data to our webpage.
@@ -26,6 +29,9 @@ def topics(request):
 def topic(request, topic_id):
     """Show a single topic and all its entries."""
     topic = Topic.objects.get(id=topic_id)
+    # Make sure the topic belongs to the current user.
+    check_topic_owner(request, topic)
+
     # Get the entries associated with the topic, most recently added first.
     entries = topic.entry_set.order_by("-date_added")
     context = {"topic": topic, "entries": entries}
@@ -51,7 +57,10 @@ def new_topic(request):
         # Checking if all required fields are filled in.
         if form.is_valid():
             # Writing data from our form to our database.
-            form.save()
+            # form.save()
+            new_topic = form.save(commit=False)  # storing data in new_topic.
+            new_topic.owner = request.user  # setting owner to current user.
+            new_topic.save()  # save new_topic to our database.
             # Redirects the user back to the topics page.
             return redirect("learning_logs:topics")
 
@@ -65,6 +74,8 @@ def new_topic(request):
 def new_entry(request, topic_id):
     """Add a new entry for a particular topic."""
     topic = Topic.objects.get(id=topic_id)
+
+    check_topic_owner(request, topic)
 
     if request.method != "POST":
         # No data submitted; create a blank form.
@@ -95,6 +106,8 @@ def edit_entry(request, entry_id):
     entry = Entry.objects.get(id=entry_id)
     topic = entry.topic
 
+    check_topic_owner(request, topic)
+
     if request.method != "POST":
         # Initial request; pre-fill form with the current entry.
         # instance=entry fills up the form with the recorded entry text.
@@ -110,3 +123,9 @@ def edit_entry(request, entry_id):
 
     context = {"entry": entry, "topic": topic, "form": form}
     return render(request, "learning_logs/edit_entry.html", context)
+
+
+def check_topic_owner(request, topic):
+    """Checks if the current topic's owner is same with the current user."""
+    if topic.owner != request.user:
+        raise Http404

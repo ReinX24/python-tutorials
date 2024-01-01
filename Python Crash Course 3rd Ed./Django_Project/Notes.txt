@@ -102,3 +102,25 @@ for user in User.objects.all()
 
 # Migrating the existing records in our database to an already existing user
 python3 manage.py makemigrations learning_logs
+1 # select first option
+1 # select user id of 1
+python3 manage.py migrate
+
+After entering the command will prompt the user to select a fix, we will choose
+1 where we will set all existing rows to a User. We will type in 1 again since we
+will be assigning it to the first user, the superuser we have made to access the
+admin commands.
+
+# Checking if the existing records now refer to the user with an id of 1 (superuser)
+from learning_logs.models import Topic
+for topic in Topic.objects.all():
+	print(topic, topic.owner)
+
+This prints all the recorded Topic objects and prints their owners.
+
+# Deleting all the recorded data in the database (not recommended)
+python3 manage.py flush
+
+Its a good practice to migrate data instead of deleting all recorded data in a 
+database, only delete all data if you really want to delete all existing data in
+our database.
