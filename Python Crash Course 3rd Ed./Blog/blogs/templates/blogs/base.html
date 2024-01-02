@@ -17,47 +17,69 @@
         <!-- Title of our website, leads to index page -->
         <div class="container-fluid">
             <a class="navbar-brand" href="{% url 'blogs:index' %}">BlogU</a>
-        </div>
 
-        <!-- Button that will contains an expandable list for our links when
+            <!-- Button that will contains an expandable list for our links when
         the screen gets too small -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
-            aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-        <!-- Links that will be in our nav bar, will collapse into a button of
+            <!-- Links that will be in our nav bar, will collapse into a button of
         the screen is too small -->
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'blogs:blogs_page' %}">
-                        Blogs</a>
-                </li>
-            </ul>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'blogs:blogs_page' %}">
+                            Blogs</a>
+                    </li>
+                </ul>
+
+                <!-- Account-related links -->
+                <ul class="navbar-nav ms-auto mb-2 mb-md-0">
+                    <!-- Shows the username if they are logged in -->
+                    {% if user.is_authenticated %}
+                    <li class="nav-item me-2">
+                        <span class="navbar-text me-2 text-primary">
+                            {{ user.username }}</span>
+                    </li>
+                    <!-- Shows register and login button -->
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'accounts:register' %}">
+                            Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'accounts:login' %}">
+                            Log in</a>
+                    </li>
+                    {% endif %}
+                </ul>
+
+                <!-- Log out button that appears when the user is logged in -->
+                {% if user.is_authenticated %}
+                <form action="{% url 'accounts:logout' %}" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-outline-secondary btn-sm">
+                        Log out</button>
+                </form>
+                {% endif %}
+
+            </div> <!-- Contains the collapsible part of the navbar -->
+
+        </div> <!-- Closes navbar's container -->
+    </nav> <!-- End of navbar -->
+
+    <!-- Header and body of our class -->
+    <main class="container">
+        <div class="pb-2 mb-2 border-bottom">
+            {% block page_header %}{% endblock page_header %}
         </div>
-    </nav>
+        <div>
+            {% block content %}{% endblock content %}
+        </div>
+    </main>
 
-    <p>
-        <a href="{% url 'blogs:index' %}">Home</a> -
-        <a href="{% url 'blogs:blogs_page' %}">Blogs</a> -
-        {% if user.is_authenticated %}
-        Hello, {{ user.username }}
-        {% else %}
-        <a href="{% url 'accounts:login' %}">Login</a> -
-        <a href="{% url 'accounts:register' %}">Register</a>
-        {% endif %}
-    </p>
-
-    {% block content %}{% endblock content %}
-
-    {% if user.is_authenticated %}
-    <hr>
-    <form action="{% url 'accounts:logout' %}" method="POST">
-        {% csrf_token %}
-        <button type="submit">Log out</button>
-    </form>
-    {% endif %}
 </body>
 
 </html>

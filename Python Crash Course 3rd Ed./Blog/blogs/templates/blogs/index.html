@@ -1,6 +1,29 @@
 {% extends 'blogs/base.html' %}
 
-{% block content %}
-<h1>BlogU</h1>
-<p>A place to write blog posts about anything, anywhere, and anytime.</p>
-{% endblock content %}
+{% block page_header %}
+<div class="p-3 mb-4 bg-light border-rounded-3">
+    <div class="container-fluid py-4 text-center">
+        <h1 class="display-3">BlogU</h1>
+        <p class="lead">
+            BlogU, a dynamic online platform, invites users to unleash their
+            creativity and share compelling stories, insightful perspectives,
+            and expert advice across a myriad of topics. With its user-friendly
+            interface and vibrant community, BlogU cultivates a space where
+            individuals can connect, inspire, and explore a diverse range of
+            engaging content.
+        </p>
+        <!-- Show a welcome message if the user is logged in -->
+        {% if user.is_authenticated %}
+        <h2>Welcome, {{ user.username }}</h2>
+        <!-- Register button if the user is not logged in -->
+        {% else %}
+        <div class="d-inline-flex gap-2">
+            <a class="btn btn-primary btn-lg mt-1 rounded-pill" href="{% url 'accounts:register' %}">
+                Register &raquo;</a>
+            <a class="btn btn-outline-secondary btn-lg mt-1 rounded-pill" href="{% url 'accounts:login' %}">
+                Login &rarr;</a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock page_header %}

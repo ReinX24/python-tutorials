@@ -1,7 +1,10 @@
 {% extends 'blogs/base.html' %}
 
-{% block content %}
+{% block page_header %}
 <h2>Blogs</h2>
+{% endblock page_header %}
+
+{% block content %}
 <ul>
     {% for blog in blogs %}
     <li><a href="{% url 'blogs:posts' blog.id %}">{{ blog.text }}</a></li>
