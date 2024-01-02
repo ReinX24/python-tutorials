@@ -5,9 +5,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blogs</title>
+
+    {% load django_bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
 </head>
 
 <body>
+
+    <nav class="navbar navbar-expand-md navbar-light bg-light mb-4 border">
+        <!-- Title of our website, leads to index page -->
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'blogs:index' %}">BlogU</a>
+        </div>
+
+        <!-- Button that will contains an expandable list for our links when
+        the screen gets too small -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+            aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Links that will be in our nav bar, will collapse into a button of
+        the screen is too small -->
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'blogs:blogs_page' %}">
+                        Blogs</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
     <p>
         <a href="{% url 'blogs:index' %}">Home</a> -
         <a href="{% url 'blogs:blogs_page' %}">Blogs</a> -

@@ -1,0 +1,130 @@
+# Creating a virtual environment for our Django project
+This is so that our project will be contained in one environment which makes
+our code base cleaner.
+
+python3 -m venv ll_env
+
+# Activating the virtual environment
+We activate our virtual enviroment so that we can install packages that we
+will need for our Django project.
+
+source ll_env/bin/activate
+
+To deactivate, we simply just type in 'deactivate' in the console.
+
+# Installing Django
+After we have created our virtual environment, we will now be installing
+Django. Make sure that our virtual environment is running when we install
+Django in our directory.
+
+pip install --upgrade pip
+pip install django
+
+Remember, we can only run our Django project whenever our virtual environment
+is activated.
+
+# Creating a project
+Creating a project within our virtual environment itself (. at the end means
+that we create the project in the current directory).
+
+django-admin startproject ll_project .
+
+# Creating a database for our Django project
+
+python3 manage.py migrate
+
+# Viewing the project using the 'runserver' command
+
+python3 manage.py runserver
+
+To a different port if the default port is being used (8000), we can add the
+port we want to use for our webserver by adding a port number at the end of
+runserver.
+
+python3 manage.py runserver 8001
+
+# Creating an app in our Django project
+Activating our virtual environment and adding an app
+source ll_env/bin/activate
+python3 manage.py startapp learning_logs
+
+# Adding our models to our database and applying this to our Django project
+python3 manage.py makemigrations learning_logs
+python3 manage.py migrate
+
+# Adding a superuser to our project
+python3 manage.py createsuperuser
+
+# Looking at our stored models in our database and their records
+python3 manage.py shell
+from learning_logs.models import Topic
+Topic.object.all()
+
+# Getting all the Topic database records and iterating through them
+topics = Topic.object.all()
+for topic in topics:
+	print(topic.id, topic)
+
+# Output:
+1 Chess
+2 Rock Climbing
+
+# Getting a topic by their id and accessing their attributes
+t = Topic.objects.get(id=1)
+t.text
+t.date_added
+
+# We can also see the entries related to a Topic record in our database
+To access a foreign key relationship, we need to use the lowercase text
+of the class, in this case entry, and followed by an underscore and the
+word set.
+t.entry_set.all();
+
+# Using template filters to modify variables in our webpage (check topic.html).
+
+# CSRF (Cross-Site Request Forgery) Token
+When we look at the forms within our django apps, we can see than these forms
+contain a {% csrf_token %} template within them. This is so that each session
+that the user will have with the site will be unique, which in turn will prevent
+any malicious attack that the website may encounter.
+
+# No such column error
+One of the errors that I have encountered is the 'No such column error'. To fix
+this, I deleted my sqlite database and made a new one, this error may have been
+caused by changing the variable names in our models.py file.
+
+# Setting records already stored in the database to an existing user
+python3 manage.py shell
+from django.contrib.auth.models import User
+User.objects.all() # see all created User accounts
+for user in User.objects.all()
+	print(user.username, user.id)
+
+# Migrating the existing records in our database to an already existing user
+python3 manage.py makemigrations learning_logs
+1 # select first option
+1 # select user id of 1
+python3 manage.py migrate
+
+After entering the command will prompt the user to select a fix, we will choose
+1 where we will set all existing rows to a User. We will type in 1 again since we
+will be assigning it to the first user, the superuser we have made to access the
+admin commands.
+
+# Checking if the existing records now refer to the user with an id of 1 (superuser)
+from learning_logs.models import Topic
+for topic in Topic.objects.all():
+	print(topic, topic.owner)
+
+This prints all the recorded Topic objects and prints their owners.
+
+# Deleting all the recorded data in the database (not recommended)
+python3 manage.py flush
+
+Its a good practice to migrate data instead of deleting all recorded data in a 
+database, only delete all data if you really want to delete all existing data in
+our database.
+
+# Installing django-bootstrap5 to style our Django projects
+source ll_env/bin/activate
+pip install django-bootstrap5
