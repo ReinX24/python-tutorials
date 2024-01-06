@@ -5,9 +5,17 @@
 {% endblock page_header %}
 
 {% block content %}
-<ul class="list-group border-bottom pb-2 mb-2">
+<ul class="list-group pb-2 mb-2">
     {% for blog in blogs %}
-    <li class="list-group-item border-0"><a href="{% url 'blogs:posts' blog.id %}">{{ blog.text }}</a></li>
+    <li class="list-group-item border">
+        <div class="d-flex justify-content-between">
+            <a href="{% url 'blogs:posts' blog.id %}">
+                <h4>{{ blog.text }}</h4>
+            </a>
+            <a class="btn btn-danger btn-md" href="{% url 'blogs:delete_blog' blog.id %}">
+                Delete</a>
+        </div>
+    </li>
     {% empty %}
     <li class="list-group-item border-0">No blogs added yet.</li>
     {% endfor %}

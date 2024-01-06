@@ -15,7 +15,15 @@
         <!-- Show a welcome message if the user is logged in -->
         {% if user.is_authenticated %}
         <h2>Welcome, {{ user.username }}</h2>
-        <a class="btn btn-primary btn-lg mt-4" href="{% url 'blogs:blogs_page' %}">Blogs &raquo;</a>
+        <div class="d-flex justify-content-center">
+            <a class="btn btn-primary btn-lg rounded-pill mt-4 mx-1" href="{% url 'blogs:blogs_page' %}">
+                Blogs &raquo;</a>
+            <form action="{% url 'accounts:logout' %}" method="POST">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-outline-secondary btn-lg rounded-pill mt-4 mx-1">
+                    Log out &rarr;</button>
+            </form>
+        </div>
         <!-- Register button if the user is not logged in -->
         {% else %}
         <div class="d-inline-flex gap-2">

@@ -96,6 +96,40 @@ def edit_post(request, post_id):
     return render(request, "blogs/edit_post.html", context)
 
 
+@login_required
+def delete_blog(request, blog_id):
+    """Delete a blog and its posts."""
+    blog = Blog.objects.get(id=blog_id)
+    posts = blog.post_set.order_by("-date_added")
+
+    check_blog_owner(request, blog)
+
+    if request.method != "POST":
+        context = {"blog": blog, "posts": posts}
+    else:
+        blog.delete()
+        return redirect("blogs:blogs_page")
+
+    return render(request, "blogs/delete_blog.html", context)
+
+
+@login_required
+def delete_post(request, post_id):
+    """Delete a post from a blog."""
+    post = Post.objects.get(id=post_id)
+    blog = post.blog
+
+    check_blog_owner(request, blog)
+
+    if request.method != "POST":
+        context = {"blog": blog, "post": post}
+    else:
+        post.delete()
+        return redirect("blogs:posts", blog_id=blog.id)
+
+    return render(request, "blogs/delete_post.html", context)
+
+
 def check_blog_owner(request, blog):
     """Check if the current blog's owner is the same with the current user."""
     if blog.owner != request.user:

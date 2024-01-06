@@ -17,4 +17,8 @@ urlpatterns = [
     path("new_post/<int:blog_id>", views.new_post, name="new_post"),
     # Edit a post in one of our blogs.
     path("edit_post/<int:post_id>", views.edit_post, name="edit_post"),
+    # Delete a blog and its posts
+    path("delete_blog/<int:blog_id>", views.delete_blog, name="delete_blog"),
+    # Delete a post from a blog
+    path("delete_post/<int:post_id>", views.delete_post, name="delete_post"),
 ]

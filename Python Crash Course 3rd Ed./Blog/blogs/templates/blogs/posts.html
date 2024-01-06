@@ -1,11 +1,14 @@
 {% extends 'blogs/base.html' %}
 
 {% block page_header %}
-<h2>{{ blog }}</h2>
+<h2><a href="{% url 'blogs:blogs_page' %}">Blogs</a></h2>
 {% endblock page_header %}
 
 {% block content %}
-<a class="btn btn-primary btn-md mt-2 my-4" href="{% url 'blogs:new_post' blog.id %}">Add new post</a>
+<h2>{{ blog }}</h2>
+<a class="btn btn-primary btn-md mt-2 my-4" href="{% url 'blogs:new_post' blog.id %}">
+    Add new post</a>
+
 {% for post in posts %}
 <div class="card mb-3">
     <h3 class="card-header">
@@ -17,6 +20,8 @@
         <a class="btn btn-primary btn-md" href="{% url 'blogs:edit_post' post.id %}">
             Edit post
         </a>
+        <a class="btn btn-danger btn-md ms-1" href="{% url 'blogs:delete_post' post.id %}">
+            Delete</a>
     </div>
 </div>
 {% empty %}

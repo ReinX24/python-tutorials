@@ -2,11 +2,11 @@
 {% load django_bootstrap5 %}
 
 {% block page_header %}
-<h2>Add new post</h2>
+<h2><a href="{% url 'blogs:posts' blog.id %}">{{ blog }}</a></h2>
 {% endblock page_header %}
 
 {% block content %}
-<h2><a href="{% url 'blogs:posts' blog.id %}">{{ blog }}</a></h2>
+<h2>Add new post</h2>
 
 <form action="{% url 'blogs:new_post' blog.id %}" method="POST">
     {% csrf_token %}
