@@ -1,0 +1,4 @@
+# Requirements for our project
+Django~=5.0.1
+django-bootstrap5
+whitenoise

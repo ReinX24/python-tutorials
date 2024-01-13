@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,9 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Owl Watch</title>
 
-    {% load django_bootstrap5 %}
-    {% bootstrap_css %}
-    {% bootstrap_javascript %}
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
 </head>
 
 <body>

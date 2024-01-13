@@ -1,0 +1,39 @@
+{% extends 'owl_watch/base.html' %}
+
+{% block content %}
+<form action="{% url 'owl_watch:test_page' %}" method="POST">
+    {% csrf_token %}
+
+    <h1>Anxiety Symptoms Questionnaire</h1>
+    <p>Answer the following in regards to what you have experienced in the
+        past week:</p>
+
+    <div class="my-4">
+        <h4 class="my-2">1. Anxiety</h4>
+        <div class="d-flex flex-column gap-2">
+            {{ form.question1_1.label_tag }}
+            {{ form.question1_1 }}
+
+            {{ form.question1_2.label_tag }}
+            {{ form.question1_2 }}
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="my-4">
+        <h4 class="my-2">2. Nervousness</h4>
+        <div class="d-flex flex-column gap-2">
+            {{ form.question2_1.label_tag }}
+            {{ form.question2_1 }}
+
+            {{ form.question2_2.label_tag }}
+            {{ form.question2_2 }}
+        </div>
+    </div>
+
+    <hr>
+
+    <button type="submit">Submit</button>
+</form>
+{% endblock content %}

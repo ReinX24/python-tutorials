@@ -1,27 +1,22 @@
 from django import forms
 
-from survey.models import Row1, Row2
+from survey.models import Questions
 
 
-class RowOneForm(forms.ModelForm):
+class QuestionsForm(forms.ModelForm):
     """Form for showing questions."""
 
-    class Meta:
-        model = Row1
-        fields = ("question1_1", "question1_2")
-        labels = {
-            "question1_1": "",
-            "question1_2": "",
-        }
-
-
-class RowTwoForm(forms.ModelForm):
-    """Second row of questions"""
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for visible in self.visible_fields():
+            visible.field.widget.attrs["class"] = "form-select"
 
     class Meta:
-        model = Row2
-        fields = ("question2_1", "question2_2")
+        model = Questions
+        fields = ("question1_1", "question1_2", "question2_1", "question2_2")
         labels = {
-            "question2_1": "",
-            "question2_2": "",
+            "question1_1": "Intensity",
+            "question1_2": "Frequency",
+            "question2_1": "Intensity",
+            "question2_2": "Frequency",
         }
