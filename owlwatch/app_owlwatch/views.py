@@ -9,6 +9,11 @@ def index(request):
     return render(request, "app_owlwatch/index.html")
 
 
+def apps_page(request):
+    """Load apps page."""
+    return render(request, "app_owlwatch/apps_page.html")
+
+
 def test_page(request):
     """Load survey page."""
     if request.method == "POST":

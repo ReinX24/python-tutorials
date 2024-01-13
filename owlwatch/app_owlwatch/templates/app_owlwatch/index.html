@@ -9,8 +9,8 @@
         {% if user.is_authenticated %}
         <h2>Welcome, {{ user.username }}.</h2>
         <div class="d-flex justify-content-center">
-            <a class="btn btn-primary btn-lg mt-1 mx-1" href="{% url 'app_owlwatch:test_page' %}">
-                Test &raquo;</a>
+            <a class="btn btn-primary btn-lg mt-1 mx-1" href="{% url 'app_owlwatch:apps_page' %}">
+                Apps &raquo;</a>
             <form action="{% url 'accounts:logout' %}" method="POST">
                 {% csrf_token %}
                 <button type="submit" class="btn btn-secondary btn-lg mt-1 mx-1">
