@@ -1,0 +1,37 @@
+{% extends 'app_owlwatch/base.html' %}
+{% load django_bootstrap5 %}
+
+{% block page_header %}
+<h1>Anxiety Symptoms Questionnaire</h1>
+<p class="lead">Answer the following in regards to what you have experienced in the
+    past week:</p>
+{% endblock page_header %}
+
+{% block content %}
+<form action="{% url 'app_owlwatch:test_page' %}" method="POST">
+    {% csrf_token %}
+    <div class="my-4">
+        <h2 class="my-2">1. Anxiety</h2>
+        <div class="d-flex flex-column gap-2">
+            <p class="fs-4">{{ form.question1_intensity.label_tag }}</p>
+            {{ form.question1_intensity }}
+
+            <p class="fs-4">{{ form.question1_frequency.label_tag }}</p>
+            {{ form.question1_frequency }}
+        </div>
+    </div>
+
+    <div class="my-4">
+        <h2 class="my-2">2. Nervousness</h2>
+        <div class="d-flex flex-column gap-2">
+            <p class="fs-4">{{ form.question2_intensity.label_tag }}</p>
+            {{ form.question2_intensity }}
+
+            <p class="fs-4">{{ form.question2_frequency.label_tag }}</p>
+            {{ form.question2_frequency }}
+        </div>
+    </div>
+
+    {% bootstrap_button button_type="submit" content="Submit" %}
+</form>
+{% endblock content %}

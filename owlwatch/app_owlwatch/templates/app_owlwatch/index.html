@@ -1,0 +1,30 @@
+{% extends 'app_owlwatch/base.html' %}
+{% load django_bootstrap5 %}
+
+{% block page_header %}
+<div class="p-3 mb-4 bg-light border-rounded-3">
+    <div class="container-fluid text-center py-4">
+        <h1 class="display-2">Owl Watch_</h1>
+        <p class="lead">Mental Health Hub for Universidad De Dagupan Students</p>
+        {% if user.is_authenticated %}
+        <h2>Welcome, {{ user.username }}.</h2>
+        <div class="d-flex justify-content-center">
+            <a class="btn btn-primary btn-lg mt-1 mx-1" href="{% url 'app_owlwatch:test_page' %}">
+                Test &raquo;</a>
+            <form action="{% url 'accounts:logout' %}" method="POST">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-secondary btn-lg mt-1 mx-1">
+                    Log out &larr;</button>
+            </form>
+        </div>
+        {% else %}
+        <div class="d-flex justify-content-center">
+            <a class="btn btn-primary btn-lg mt-1 mx-1" href="{% url 'accounts:register' %}">
+                Register &raquo;</a>
+            <a class="btn btn-secondary btn-lg mt-1 mx-1" href="{% url 'accounts:login' %}">
+                Login &rarr;</a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock page_header %}

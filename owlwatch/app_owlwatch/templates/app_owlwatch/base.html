@@ -1,0 +1,85 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Owl Watch_</title>
+
+    {% load django_bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+</head>
+
+<body>
+
+    <!-- Collapsible navbar -->
+    <nav class="navbar navbar-expand-md navbar-light bg-light mb-4 border">
+        <div class="container-fluid">
+            <!-- Link to index page -->
+            <a class="navbar-brand" href="{% url 'app_owlwatch:index' %}">Owl Watch_</a>
+
+            <!-- Hamburger button when screen gets too small. -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Links within navbar, will transport into hamburger button. -->
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+
+                <!-- Home page -->
+                <!-- <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'app_owlwatch:index' %}">Home</a>
+                    </li>
+                </ul> -->
+
+                <!-- Account related links -->
+                <ul class="navbar-nav ms-auto mb-2 mb-md-0">
+
+                    {% if user.is_authenticated %}
+                    <li class="nav-item me-2">
+                        <span class="navbar-text me-2 text-primary">{{ user.username }}</span>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'accounts:register' %}">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'accounts:login' %}">Login</a>
+                    </li>
+                    {% endif %}
+
+                </ul>
+
+                <!-- Logout button. -->
+                {% if user.is_authenticated %}
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-outline-seconday btn-sm">
+                        Log out</button>
+                </form>
+                {% endif %}
+
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="pb-2 mb-2 border-bottom">
+            {% block page_header %}
+            {% endblock page_header %}
+        </div>
+        <div class="py-4">
+            {% block content %}
+            {% endblock content %}
+        </div>
+    </main>
+</body>
+
+</html>
