@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django.contrib.auth.models import User
 
 NUMBER_CHOICES = (
     (0, 0),
@@ -12,8 +13,18 @@ NUMBER_CHOICES = (
 
 
 # Create your models here.
+class Averages(models.Model):
+    """Averages model for storing average_intensity and average_frequency."""
+
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    average_intensity = models.IntegerField(default=0)
+    average_frequency = models.IntegerField(default=0)
+
+
 class Questions(models.Model):
     """Survey form model for stroring questions and answers in our database."""
+
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
     question1_intensity = models.IntegerField(
         default=0,
