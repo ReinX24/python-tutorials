@@ -17,8 +17,8 @@ class Averages(models.Model):
     """Averages model for storing average_intensity and average_frequency."""
 
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    average_intensity = models.IntegerField(default=0)
-    average_frequency = models.IntegerField(default=0)
+    average_intensity = models.FloatField(default=0)
+    average_frequency = models.FloatField(default=0)
 
 
 class Questions(models.Model):

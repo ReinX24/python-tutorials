@@ -8,7 +8,7 @@
 {% endblock page_header %}
 
 {% block content %}
-<form action="{% url 'app_owlwatch:test_page' %}" method="POST">
+<form action="{% url 'app_owlwatch:test_page' user_id=user_id %}" method="POST">
     {% csrf_token %}
     <div class="my-4">
         <h2 class="my-2">1. Anxiety</h2>

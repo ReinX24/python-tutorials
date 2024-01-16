@@ -1,24 +1,31 @@
 from django.shortcuts import render
 
 from app_owlwatch.forms import QuestionsForm
-from app_owlwatch.models import Averages
+from app_owlwatch.models import Averages, Questions
 
 
 # Create your views here.
 def index(request):
     """Load index page."""
+    # Get the id of the user, QuestionsForm, and Averages
     return render(request, "app_owlwatch/index.html")
 
 
 def apps_page(request):
     """Load apps page."""
-    return render(request, "app_owlwatch/apps_page.html")
+    user_id = request.user.id
+    return render(request, "app_owlwatch/apps_page.html", {"user_id": user_id})
 
 
-def test_page(request):
+def test_page(request, user_id):
     """Load survey page."""
-    if request.method == "POST":
-        form = QuestionsForm(data=request.POST)
+
+    questions_record = Questions.objects.get(owner_id=user_id)
+
+    if request.method != "POST":
+        form = QuestionsForm(instance=questions_record)
+    else:
+        form = QuestionsForm(instance=questions_record, data=request.POST)
         intensity_1 = request.POST["question1_intensity"]
         frequency_1 = request.POST["question1_frequency"]
         intensity_2 = request.POST["question2_intensity"]
@@ -32,12 +39,9 @@ def test_page(request):
         # form.average_intensity = (float(intensity_1) + float(intensity_2)) / 2
         # form.average_frequency = (float(frequency_1) + float(frequency_2)) / 2
 
-        # When the user makes a new account, creat an instance of QuestionsForm
-        # and Averages already, this is so that there will only be one instance
-        # instead of several instances of their averages and test answers.
-        user_averages = Averages()
-        user_averages.average_frequency = 5
-        user_averages.average_intensity = 10
+        user_averages = Averages.objects.get(owner_id=user_id)
+        user_averages.average_frequency = (float(intensity_1) + float(intensity_2)) / 2
+        user_averages.average_intensity = (float(frequency_1) + float(frequency_2)) / 2
 
         if form.is_valid():
             user_record = form.save(commit=False)
@@ -45,7 +49,13 @@ def test_page(request):
             user_averages.owner = request.user
             user_record.save()
             user_averages.save()
-    else:
-        form = QuestionsForm()
 
-    return render(request, "app_owlwatch/test.html", {"form": form})
+    return render(request, "app_owlwatch/test.html", {"form": form, "user_id": user_id})
+
+
+def test_history(request, user_id):
+    """Get the past tests of the current user."""
+    averages = Averages.objects.filter(owner=request.user).order_by("id")
+    return render(
+        request, "app_owlwatch/test_history.html", {"averages": user_questions}
+    )
