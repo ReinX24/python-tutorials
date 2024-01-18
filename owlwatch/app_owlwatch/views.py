@@ -28,13 +28,29 @@ def test_page(request, user_id):
         form = QuestionsForm(instance=questions_record, data=request.POST)
         intensity_1 = request.POST["question1_intensity"]
         frequency_1 = request.POST["question1_frequency"]
+
         intensity_2 = request.POST["question2_intensity"]
         frequency_2 = request.POST["question2_frequency"]
+
+        intensity_3 = request.POST["question3_intensity"]
+        frequency_3 = request.POST["question3_frequency"]
+
+        intensity_4 = request.POST["question4_intensity"]
+        frequency_4 = request.POST["question4_frequency"]
+
+        intensity_5 = request.POST["question5_intensity"]
+        frequency_5 = request.POST["question5_frequency"]
 
         # print(intensity_1)
         # print(frequency_1)
         # print(intensity_2)
         # print(frequency_2)
+        # print(intensity_3)
+        # print(frequency_3)
+        # print(intensity_4)
+        # print(frequency_4)
+        # print(intensity_5)
+        # print(frequency_5)
 
         # form.average_intensity = (float(intensity_1) + float(intensity_2)) / 2
         # form.average_frequency = (float(frequency_1) + float(frequency_2)) / 2

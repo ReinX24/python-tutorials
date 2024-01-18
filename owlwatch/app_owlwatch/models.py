@@ -49,3 +49,183 @@ class Questions(models.Model):
         choices=NUMBER_CHOICES,
         validators=[MinValueValidator(0), MaxValueValidator(10)],
     )
+
+    question3_intensity = models.IntegerField(
+        default=0,
+        choices=NUMBER_CHOICES,
+        validators=[MinValueValidator(0), MaxValueValidator(10)],
+    )
+
+    question3_frequency = models.IntegerField(
+        default=0,
+        choices=NUMBER_CHOICES,
+        validators=[MinValueValidator(0), MaxValueValidator(10)],
+    )
+
+    question4_intensity = models.IntegerField(
+        default=0,
+        choices=NUMBER_CHOICES,
+        validators=[MinValueValidator(0), MaxValueValidator(10)],
+    )
+
+    question4_frequency = models.IntegerField(
+        default=0,
+        choices=NUMBER_CHOICES,
+        validators=[MinValueValidator(0), MaxValueValidator(10)],
+    )
+
+    question5_intensity = models.IntegerField(
+        default=0,
+        choices=NUMBER_CHOICES,
+        validators=[MinValueValidator(0), MaxValueValidator(10)],
+    )
+
+    question5_frequency = models.IntegerField(
+        default=0,
+        choices=NUMBER_CHOICES,
+        validators=[MinValueValidator(0), MaxValueValidator(10)],
+    )
+
+    question6_intensity = models.IntegerField(
+        default=0,
+        choices=NUMBER_CHOICES,
+        validators=[MinValueValidator(0), MaxValueValidator(10)],
+    )
+
+    question6_frequency = models.IntegerField(
+        default=0,
+        choices=NUMBER_CHOICES,
+        validators=[MinValueValidator(0), MaxValueValidator(10)],
+    )
+
+    question7_intensity = models.IntegerField(
+        default=0,
+        choices=NUMBER_CHOICES,
+        validators=[MinValueValidator(0), MaxValueValidator(10)],
+    )
+
+    question7_frequency = models.IntegerField(
+        default=0,
+        choices=NUMBER_CHOICES,
+        validators=[MinValueValidator(0), MaxValueValidator(10)],
+    )
+
+    question8_intensity = models.IntegerField(
+        default=0,
+        choices=NUMBER_CHOICES,
+        validators=[MinValueValidator(0), MaxValueValidator(10)],
+    )
+
+    question8_frequency = models.IntegerField(
+        default=0,
+        choices=NUMBER_CHOICES,
+        validators=[MinValueValidator(0), MaxValueValidator(10)],
+    )
+
+    question9_intensity = models.IntegerField(
+        default=0,
+        choices=NUMBER_CHOICES,
+        validators=[MinValueValidator(0), MaxValueValidator(10)],
+    )
+
+    question9_frequency = models.IntegerField(
+        default=0,
+        choices=NUMBER_CHOICES,
+        validators=[MinValueValidator(0), MaxValueValidator(10)],
+    )
+
+    question10_intensity = models.IntegerField(
+        default=0,
+        choices=NUMBER_CHOICES,
+        validators=[MinValueValidator(0), MaxValueValidator(10)],
+    )
+
+    question10_frequency = models.IntegerField(
+        default=0,
+        choices=NUMBER_CHOICES,
+        validators=[MinValueValidator(0), MaxValueValidator(10)],
+    )
+
+    question11_intensity = models.IntegerField(
+        default=0,
+        choices=NUMBER_CHOICES,
+        validators=[MinValueValidator(0), MaxValueValidator(10)],
+    )
+
+    question11_frequency = models.IntegerField(
+        default=0,
+        choices=NUMBER_CHOICES,
+        validators=[MinValueValidator(0), MaxValueValidator(10)],
+    )
+
+    question12_intensity = models.IntegerField(
+        default=0,
+        choices=NUMBER_CHOICES,
+        validators=[MinValueValidator(0), MaxValueValidator(10)],
+    )
+
+    question12_frequency = models.IntegerField(
+        default=0,
+        choices=NUMBER_CHOICES,
+        validators=[MinValueValidator(0), MaxValueValidator(10)],
+    )
+
+    question13_intensity = models.IntegerField(
+        default=0,
+        choices=NUMBER_CHOICES,
+        validators=[MinValueValidator(0), MaxValueValidator(10)],
+    )
+
+    question13_frequency = models.IntegerField(
+        default=0,
+        choices=NUMBER_CHOICES,
+        validators=[MinValueValidator(0), MaxValueValidator(10)],
+    )
+
+    question14_intensity = models.IntegerField(
+        default=0,
+        choices=NUMBER_CHOICES,
+        validators=[MinValueValidator(0), MaxValueValidator(10)],
+    )
+
+    question14_frequency = models.IntegerField(
+        default=0,
+        choices=NUMBER_CHOICES,
+        validators=[MinValueValidator(0), MaxValueValidator(10)],
+    )
+
+    question15_intensity = models.IntegerField(
+        default=0,
+        choices=NUMBER_CHOICES,
+        validators=[MinValueValidator(0), MaxValueValidator(10)],
+    )
+
+    question15_frequency = models.IntegerField(
+        default=0,
+        choices=NUMBER_CHOICES,
+        validators=[MinValueValidator(0), MaxValueValidator(10)],
+    )
+
+    question16_intensity = models.IntegerField(
+        default=0,
+        choices=NUMBER_CHOICES,
+        validators=[MinValueValidator(0), MaxValueValidator(10)],
+    )
+
+    question16_frequency = models.IntegerField(
+        default=0,
+        choices=NUMBER_CHOICES,
+        validators=[MinValueValidator(0), MaxValueValidator(10)],
+    )
+
+    question17_intensity = models.IntegerField(
+        default=0,
+        choices=NUMBER_CHOICES,
+        validators=[MinValueValidator(0), MaxValueValidator(10)],
+    )
+
+    question17_frequency = models.IntegerField(
+        default=0,
+        choices=NUMBER_CHOICES,
+        validators=[MinValueValidator(0), MaxValueValidator(10)],
+    )
