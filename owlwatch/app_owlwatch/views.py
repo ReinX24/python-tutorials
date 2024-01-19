@@ -2,6 +2,7 @@ from django.shortcuts import render
 
 from app_owlwatch.forms import QuestionsForm
 from app_owlwatch.models import Averages, Questions
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -11,12 +12,14 @@ def index(request):
     return render(request, "app_owlwatch/index.html")
 
 
+@login_required
 def apps_page(request):
     """Load apps page."""
     user_id = request.user.id
     return render(request, "app_owlwatch/apps_page.html", {"user_id": user_id})
 
 
+@login_required
 def test_page(request, user_id):
     """Load survey page."""
 
@@ -26,20 +29,26 @@ def test_page(request, user_id):
         form = QuestionsForm(instance=questions_record)
     else:
         form = QuestionsForm(instance=questions_record, data=request.POST)
-        intensity_1 = request.POST["question1_intensity"]
-        frequency_1 = request.POST["question1_frequency"]
 
-        intensity_2 = request.POST["question2_intensity"]
-        frequency_2 = request.POST["question2_frequency"]
+        intensity_total = 0
+        frequency_total = 0
+        for i in range(1, 18):
+            intensity_total += int(request.POST[f"question{i}_intensity"])
+            frequency_total += int(request.POST[f"question{i}_frequency"])
 
-        intensity_3 = request.POST["question3_intensity"]
-        frequency_3 = request.POST["question3_frequency"]
+        print(intensity_total)
+        print(frequency_total)
 
-        intensity_4 = request.POST["question4_intensity"]
-        frequency_4 = request.POST["question4_frequency"]
-
-        intensity_5 = request.POST["question5_intensity"]
-        frequency_5 = request.POST["question5_frequency"]
+        # intensity_1 = request.POST["question1_intensity"]
+        # frequency_1 = request.POST["question1_frequency"]
+        # intensity_2 = request.POST["question2_intensity"]
+        # frequency_2 = request.POST["question2_frequency"]
+        # intensity_3 = request.POST["question3_intensity"]
+        # frequency_3 = request.POST["question3_frequency"]
+        # intensity_4 = request.POST["question4_intensity"]
+        # frequency_4 = request.POST["question4_frequency"]
+        # intensity_5 = request.POST["question5_intensity"]
+        # frequency_5 = request.POST["question5_frequency"]
 
         # print(intensity_1)
         # print(frequency_1)
@@ -56,8 +65,8 @@ def test_page(request, user_id):
         # form.average_frequency = (float(frequency_1) + float(frequency_2)) / 2
 
         user_averages = Averages.objects.get(owner_id=user_id)
-        user_averages.average_frequency = (float(intensity_1) + float(intensity_2)) / 2
-        user_averages.average_intensity = (float(frequency_1) + float(frequency_2)) / 2
+        user_averages.average_frequency = intensity_total / 17
+        user_averages.average_intensity = frequency_total / 17
 
         if form.is_valid():
             user_record = form.save(commit=False)
