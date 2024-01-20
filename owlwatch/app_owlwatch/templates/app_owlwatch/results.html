@@ -1,0 +1,68 @@
+{% extends 'app_owlwatch/base.html' %}
+{% load django_bootstrap5 %}
+
+{% block page_header %}
+<h1>Anxiety Symptoms Questionnaire Results</h1>
+{% endblock page_header %}
+
+{% block content %}
+
+{% if average_intensity == 0.0 %}
+<div class="card bg-secondary mb-3">
+    <div class="card-header"><h2>Intensity</h2></div>
+    <div class="card-body">
+        <h4 class="card-title">None</h4>
+        <p class="card-text"><i class="bi bi-hand-thumbs-up h1"></i></p>
+    </div>
+</div>
+{% elif average_intensity > 0.0 and average_intensity <= 3.0%}
+<div class="card bg-light mb-3">
+    <div class="card-header"><h2>Intensity</h2></div>
+    <div class="card-body">
+        <h4 class="card-title">Mild</h4>
+        <p class="card-text"><i class="bi bi-bandaid h1"></i></p>
+    </div>
+</div>
+{% elif average_intensity > 3.0 and average_intensity <= 6.0 %}
+<div class="card text-white bg-warning mb-3">
+    <div class="card-header"><h2>Intensity</h2></div>
+    <div class="card-body">
+        <h4 class="card-title">Moderate</h4>
+        <p class="card-text"><i class="bi bi-cloud-drizzle h1"></i></p>
+    </div>
+</div>
+{% elif average_intensity > 6.0 and average_intensity <= 9.0 %}
+<div class="card text-white bg-danger mb-3">
+    <div class="card-header"><h2>Intensity</h2></div>
+    <div class="card-body">
+        <h4 class="card-title">Severe</h4>
+        <p class="card-text"><i class="bi bi-cloud-lightning-rain h1"></i></p>
+    </div>
+</div>
+{% elif average_intensity > 9.0 %}
+<div class="card text-white bg-info mb-3">
+    <div class="card-header"><h2>Intensity</h2></div>
+    <div class="card-body">
+        <h4 class="card-title">Extreme distress</h4>
+        <p class="card-text"><i class="bi bi-exclamation-diamond h1"></i></p>
+    </div>
+</div>
+{% endif %}
+
+<h2>Frequency</h2>
+{% if average_frequency == 0.0 %}
+<p>None</p>
+{% elif average_frequency > 0.0 and average_frequency <= 3.0%}
+<p>Mild</p>
+{% elif average_frequency > 3.0 and average_frequency <= 6.0 %}
+<p>Moderate</p>
+{% elif average_frequency > 6.0 and average_frequency <= 9.0 %}
+<p>Severe</p>
+{% elif average_frequency > 9.0 %}
+<p>Extreme Distress</p>
+{% endif %}
+
+<p>{{ average_intensity }}</p>
+<p>{{ average_frequency }}</p>
+
+{% endblock content %}

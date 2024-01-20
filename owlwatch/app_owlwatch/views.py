@@ -39,34 +39,9 @@ def test_page(request, user_id):
         print(intensity_total)
         print(frequency_total)
 
-        # intensity_1 = request.POST["question1_intensity"]
-        # frequency_1 = request.POST["question1_frequency"]
-        # intensity_2 = request.POST["question2_intensity"]
-        # frequency_2 = request.POST["question2_frequency"]
-        # intensity_3 = request.POST["question3_intensity"]
-        # frequency_3 = request.POST["question3_frequency"]
-        # intensity_4 = request.POST["question4_intensity"]
-        # frequency_4 = request.POST["question4_frequency"]
-        # intensity_5 = request.POST["question5_intensity"]
-        # frequency_5 = request.POST["question5_frequency"]
-
-        # print(intensity_1)
-        # print(frequency_1)
-        # print(intensity_2)
-        # print(frequency_2)
-        # print(intensity_3)
-        # print(frequency_3)
-        # print(intensity_4)
-        # print(frequency_4)
-        # print(intensity_5)
-        # print(frequency_5)
-
-        # form.average_intensity = (float(intensity_1) + float(intensity_2)) / 2
-        # form.average_frequency = (float(frequency_1) + float(frequency_2)) / 2
-
         user_averages = Averages.objects.get(owner_id=user_id)
-        user_averages.average_frequency = intensity_total / 17
-        user_averages.average_intensity = frequency_total / 17
+        user_averages.average_intensity = intensity_total / 17
+        user_averages.average_frequency = frequency_total / 17
 
         if form.is_valid():
             user_record = form.save(commit=False)
@@ -75,12 +50,11 @@ def test_page(request, user_id):
             user_record.save()
             user_averages.save()
 
+            context = {
+                "average_intensity": float(user_averages.average_intensity),
+                "average_frequency": float(user_averages.average_frequency),
+            }
+
+            return render(request, "app_owlwatch/results.html", context)
+
     return render(request, "app_owlwatch/test.html", {"form": form, "user_id": user_id})
-
-
-def test_history(request, user_id):
-    """Get the past tests of the current user."""
-    averages = Averages.objects.filter(owner=request.user).order_by("id")
-    return render(
-        request, "app_owlwatch/test_history.html", {"averages": user_questions}
-    )
