@@ -8,14 +8,14 @@
 {% block content %}
 
 {% if average_intensity == 0.0 %}
-<div class="card bg-secondary mb-3">
+<div class="card text-white bg-success mb-3">
     <div class="card-header"><h2>Intensity</h2></div>
     <div class="card-body">
         <h4 class="card-title">None</h4>
         <p class="card-text"><i class="bi bi-hand-thumbs-up h1"></i></p>
     </div>
 </div>
-{% elif average_intensity > 0.0 and average_intensity <= 3.0%}
+{% elif average_intensity > 0.0 and average_intensity <= 3.0 %}
 <div class="card bg-light mb-3">
     <div class="card-header"><h2>Intensity</h2></div>
     <div class="card-body">
@@ -49,19 +49,52 @@
 </div>
 {% endif %}
 
-<h2>Frequency</h2>
 {% if average_frequency == 0.0 %}
-<p>None</p>
+<div class="card text-white bg-success mb-3">
+    <div class="card-header"><h2>Frequency</h2></div>
+    <div class="card-body">
+        <h4 class="card-title">Never</h4>
+        <p class="card-text"><i class="bi bi-hand-thumbs-up h1"></i></p>
+    </div>
+</div>
 {% elif average_frequency > 0.0 and average_frequency <= 3.0%}
-<p>Mild</p>
+<div class="card bg-light mb-3">
+    <div class="card-header"><h2>Frequency</h2></div>
+    <div class="card-body">
+        <h4 class="card-title">Occasionally</h4>
+        <p class="card-text"><i class="bi bi-bandaid h1"></i></p>
+    </div>
+</div>
 {% elif average_frequency > 3.0 and average_frequency <= 6.0 %}
-<p>Moderate</p>
+<div class="card text-white bg-warning mb-3">
+    <div class="card-header"><h2>Frequency</h2></div>
+    <div class="card-body">
+        <h4 class="card-title">Often</h4>
+        <p class="card-text"><i class="bi bi-cloud-drizzle h1"></i></p>
+    </div>
+</div>
 {% elif average_frequency > 6.0 and average_frequency <= 9.0 %}
-<p>Severe</p>
+<div class="card text-white bg-danger mb-3">
+    <div class="card-header"><h2>Frequency</h2></div>
+    <div class="card-body">
+        <h4 class="card-title">Usually</h4>
+        <p class="card-text"><i class="bi bi-cloud-lightning-rain h1"></i></p>
+    </div>
+</div>
 {% elif average_frequency > 9.0 %}
-<p>Extreme Distress</p>
+<div class="card text-white bg-info mb-3">
+    <div class="card-header"><h2>Frequency</h2></div>
+    <div class="card-body">
+        <h4 class="card-title">All the time</h4>
+        <p class="card-text"><i class="bi bi-exclamation-diamond h1"></i></p>
+    </div>
+</div>
 {% endif %}
 
+<form action="{% url 'app_owlwatch:test_reset' user_id=user_id %}">
+    {% csrf_token %}
+    {% bootstrap_button button_type="submit" content="Reset" %}
+</form>
 <p>{{ average_intensity }}</p>
 <p>{{ average_frequency }}</p>
 
