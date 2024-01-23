@@ -11,27 +11,10 @@
 <div class="card text-white bg-success mb-3">
     <div class="card-header"><h2>Anxiety Intensity</h2></div>
     <div class="card-body">
-        <h4 class="card-title">None</h4>
-        <p class="card-text"><i class="bi bi-hand-thumbs-up h1"></i>
-        <p>
-            <p class="fs-5 text-justify">A user with a score of none in an anxiety questionnaire exhibits a 
-            notable absence of anxiety symptoms based on the assessment. This 
-            implies that the individual is reporting minimal to no feelings of 
-            worry, fear, or unease across various aspects of their life. 
-            </p>
-            <p class="fs-5 text-justify">Their responses suggest a high level 
-            of emotional well-being and resilience, indicating a positive 
-            mental state and a capacity to effectively cope with stressors. 
-            It's important to interpret this score cautiously, considering 
-            factors such as the user's current life circumstances and potential
-            biases in self-reporting, as well as recognizing that anxiety 
-            levels can fluctuate over time.
-            </p>
-            <p class="fs-5 text-justify">Overall, a score of none suggests a promising indicator of 
-            psychological health and a lack of significant anxiety-related 
-            concerns at the time of the assessment.
-            </p>
-        </p>
+        <h4 class="card-title text-center">NONE</h4>
+        <p class="card-text text-center">
+            <i class="bi bi-hand-thumbs-up h1"></i>
+            <p class="text-center">A user with a score of none in an anxiety questionnaire exhibits a notable absence of anxiety symptoms based on the assessment. This implies that the individual is reporting minimal to no feelings of worry, fear, or unease across various aspects of their life.</p>
         </p>
     </div>
 </div>
@@ -39,32 +22,44 @@
 <div class="card bg-light mb-3">
     <div class="card-header"><h2>Anxiety Intensity</h2></div>
     <div class="card-body">
-        <h4 class="card-title">Mild</h4>
-        <p class="card-text"><i class="bi bi-bandaid h1"></i></p>
+        <h4 class="card-title text-center">MILD</h4>
+        <p class="card-text text-center">
+            <i class="bi bi-bandaid h1"></i>
+            <p class="text-center">A user with a mild score in an anxiety questionnaire is indicating that they experience some degree of anxiety-related symptoms, but the intensity or frequency is relatively low.</p>
+            </p>
+        </div>
     </div>
-</div>
 {% elif average_intensity > 3.0 and average_intensity <= 6.0 %}
 <div class="card text-white bg-warning mb-3">
     <div class="card-header"><h2>Anxiety Intensity</h2></div>
     <div class="card-body">
-        <h4 class="card-title">Moderate</h4>
-        <p class="card-text"><i class="bi bi-cloud-drizzle h1"></i></p>
+        <h4 class="card-title text-center">MODERATE</h4>
+        <p class="card-text text-center">
+            <i class="bi bi-cloud-drizzle h1"></i>
+            <p class="text-center">A user with a moderate score in an anxiety questionnaire is indicating a notable presence of anxiety-related symptoms. This suggests that the individual experiences a moderate level of worry, fear, or unease that may impact their daily life and functioning. </p>
+        </p>
     </div>
 </div>
 {% elif average_intensity > 6.0 and average_intensity <= 9.0 %}
 <div class="card text-white bg-danger mb-3">
     <div class="card-header"><h2>Anxiety Intensity</h2></div>
     <div class="card-body">
-        <h4 class="card-title">Severe</h4>
-        <p class="card-text"><i class="bi bi-cloud-lightning-rain h1"></i></p>
+        <h4 class="card-title text-center">SEVERE</h4>
+        <p class="card-text text-center">
+            <i class="bi bi-cloud-lightning-rain h1"></i>
+            <p class="text-center">A user with a severe score in an anxiety questionnaire is indicating an intense and pervasive experience of anxiety-related symptoms. This suggests that the individual is consistently grappling with high levels of worry, fear, or unease, significantly impacting various aspects of their daily life.</p>
+        </p>
     </div>
 </div>
 {% elif average_intensity > 9.0 %}
 <div class="card text-white bg-info mb-3">
     <div class="card-header"><h2>Anxiety Intensity</h2></div>
     <div class="card-body">
-        <h4 class="card-title">Extreme distress</h4>
-        <p class="card-text"><i class="bi bi-exclamation-diamond h1"></i></p>
+        <h4 class="card-title text-center">EXTREME DISTRESS</h4>
+        <p class="card-text text-center">
+            <i class="bi bi-exclamation-diamond h1"></i>
+            <p class="text-center">A user with a score of "extreme distress" in an anxiety questionnaire is indicating an exceptionally high and distressing level of anxiety-related symptoms. This suggests that the individual is grappling with intense and pervasive feelings of worry, fear, or unease, causing severe impairment in various aspects of their daily life.</p>
+        </p>
     </div>
 </div>
 {% endif %}
@@ -73,56 +68,69 @@
 <div class="card text-white bg-success mb-3">
     <div class="card-header"><h2>Anxiety Frequency</h2></div>
     <div class="card-body">
-        <h4 class="card-title">Never</h4>
-        <p class="card-text"><i class="bi bi-hand-thumbs-up h1"></i></p>
+        <h4 class="card-title text-center">NEVER</h4>
+        <p class="card-text text-center">
+            <i class="bi bi-hand-thumbs-up h1"></i>
+            <p class="text-center">A user who scores "never" on an anxiety questionnaire is reporting that they never experience anxiety-related symptoms or concerns as indicated by the survey questions. This result suggests a remarkable absence of feelings of worry, fear, or unease across various aspects of their life.</p>
     </div>
 </div>
 {% elif average_frequency > 0.0 and average_frequency <= 3.0%}
 <div class="card bg-light mb-3">
     <div class="card-header"><h2>Anxiety Frequency</h2></div>
     <div class="card-body">
-        <h4 class="card-title">Occasionally</h4>
-        <p class="card-text"><i class="bi bi-bandaid h1"></i></p>
+        <h4 class="card-title text-center">OCCASIONALLY</h4>
+        <p class="card-text text-center">
+            <i class="bi bi-bandaid h1"></i>
+            <p class="text-center">A user with a score of "occasionally" in an anxiety questionnaire is indicating that they experience anxiety-related symptoms periodically, suggesting that their feelings of worry, fear, or unease are not constant but do arise on certain occasions.</p>
+        </p>
     </div>
 </div>
 {% elif average_frequency > 3.0 and average_frequency <= 6.0 %}
 <div class="card text-white bg-warning mb-3">
     <div class="card-header"><h2>Anxiety Frequency</h2></div>
     <div class="card-body">
-        <h4 class="card-title">Often</h4>
-        <p class="card-text"><i class="bi bi-cloud-drizzle h1"></i></p>
+        <h4 class="card-title text-center">OFTEN</h4>
+        <p class="card-text text-center">
+            <i class="bi bi-cloud-drizzle h1"></i>
+            <p class="text-center">A user with a score of "often" in an anxiety questionnaire is indicating a significant and frequent experience of anxiety-related symptoms. This suggests that the individual frequently encounters feelings of worry, fear, or unease, potentially impacting various aspects of their life.</p>
+        </p>
     </div>
 </div>
 {% elif average_frequency > 6.0 and average_frequency <= 9.0 %}
 <div class="card text-white bg-danger mb-3">
     <div class="card-header"><h2>Anxiety Frequency</h2></div>
     <div class="card-body">
-        <h4 class="card-title">Usually</h4>
-        <p class="card-text"><i class="bi bi-cloud-lightning-rain h1"></i></p>
+        <h4 class="card-title text-center">USUALLY</h4>
+        <p class="card-text text-center">
+            <i class="bi bi-cloud-lightning-rain h1"></i>
+            <p class="text-center">A user with a score of "usually" in an anxiety questionnaire is indicating a frequent experience of anxiety-related symptoms. This suggests that the individual tends to face feelings of worry, fear, or unease on a regular basis.</p>
+        </p>
     </div>
 </div>
 {% elif average_frequency > 9.0 %}
 <div class="card text-white bg-info mb-3">
     <div class="card-header"><h2>Anxiety Frequency</h2></div>
     <div class="card-body">
-        <h4 class="card-title">All the time</h4>
-        <div class="d-flex">
-            <p class="card-text"><i class="bi bi-exclamation-diamond h1"></i>
+        <h4 class="card-title text-center">ALL THE TIME</h4>
+            <p class="card-text text-center">
+                <i class="bi bi-exclamation-diamond h1"></i>
+                <p class="text-center">A user with a score of "all the time" in an anxiety questionnaire is conveying a pervasive and constant experience of anxiety-related symptoms. This suggests that the individual consistently faces overwhelming feelings of worry, fear, or unease without respite, significantly impacting every aspect of their daily life.</p>
             </p>
-        </div>
     </div>
 </div>
 {% endif %}
 
-<div class="d-flex gap-3">
-    <form action="{% url 'app_owlwatch:test_page' user_id=user_id %}" class="w-50">
+{% comment %}TODO:Ways to improve mental health card.{% endcomment %}
+
+<div class="d-flex justify-content-center gap-3">
+    <form action="{% url 'app_owlwatch:test_page' user_id=user_id %}">
         {% csrf_token %}
-        <button type="submit" class="btn btn-primary w-100">Edit</button>
+        <button type="submit" class="btn btn-primary btn-lg">Edit</button>
     </form>
 
-    <form action="{% url 'app_owlwatch:test_reset' user_id=user_id %}" class="w-50">
+    <form action="{% url 'app_owlwatch:test_reset' user_id=user_id %}">
         {% csrf_token %}
-        <button type="submit" class="btn btn-primary w-100">Reset</button>
+        <button type="submit" class="btn btn-primary btn-lg">Reset</button>
     </form>
 </div>
 {% comment %}
