@@ -1,0 +1,14 @@
+{% extends 'app_owlwatch/base.html' %}
+{% load django_bootstrap5 %}
+
+{% block page_header %}
+<h1>Journal Entries</h1>
+{% endblock page_header %}
+
+{% block content %}
+<button class="btn btn-primary mb-4">Add Entry</button>
+{% for entry in entries %}
+{% empty %}
+<p>No entries yet</p>
+{% endfor %}
+{% endblock content %}

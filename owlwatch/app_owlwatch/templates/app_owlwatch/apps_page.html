@@ -12,10 +12,28 @@
     </div>
     <div class="card-body">
         <p class="card-text">A test to check how intense and frequency your
-            symptoms of anxiety are. This <a href="https://gpsych.bmj.com/content/gpsych/32/6/e100144/DC1/embed/inline-supplementary-material-1.pdf?download=true">Anxiety Symptoms Questionnaire</a> is from Drs. Mark Pollack, Maurizio Fava, and
-            Naomi Simon.</p>
-        <a class="btn btn-primary btn-md" href="{% url 'app_owlwatch:test_page' user_id=user_id %}">
+            symptoms of anxiety are. This <a
+                href="https://gpsych.bmj.com/content/gpsych/32/6/e100144/DC1/embed/inline-supplementary-material-1.pdf?download=true">Anxiety
+                Symptoms Questionnaire</a> is from Drs. Mark Pollack, Maurizio
+            Fava, and Naomi Simon.</p>
+        <a class="btn btn-primary btn-md"
+            href="{% url 'app_owlwatch:test_page' user_id=user_id %}">
             Take Test</a>
+    </div>
+</div>
+
+<div class="card bg-secondary mb-3">
+    <div class="card-header">
+        <h2>Journal</h2>
+    </div>
+    <div class="card-body">
+        <p class="card-text">A personal journal for the user to write entries
+            on. User information is protected by the
+            <a href="https://privacy.gov.ph/data-privacy-act/">2012 Data
+                Privacy Act</a> of the Philippines.
+        </p>
+        <a class="btn btn-primary btn-md"
+            href="{% url 'journal:entries' user_id=user_id %}">Journal</a>
     </div>
 </div>
 {% endblock content %}

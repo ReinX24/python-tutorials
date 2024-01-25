@@ -40,6 +40,7 @@ LOGOUT_REDIRECT_URL = "app_owlwatch:index"
 INSTALLED_APPS = [
     # My apps
     "app_owlwatch",
+    "journal",
     "accounts",
     # Third party apps
     "django_bootstrap5",
