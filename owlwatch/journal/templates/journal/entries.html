@@ -6,9 +6,24 @@
 {% endblock page_header %}
 
 {% block content %}
-<button class="btn btn-primary mb-4">Add Entry</button>
+<form action="{% url 'journal:add_entry' user_id=user_id %}" class="mb-4">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-primary">Add entry</button>
+</form>
 {% for entry in entries %}
+<div class="card bg-secondary mb-3">
+    <div class="card-header d-flex justify-content-between">
+        <div>{{ entry.title }}</div>
+        <div>{{ entry.created_date }}</div>
+    </div>
+    <div class="card-body">
+        <p class="card-text">{{ entry }}</p>
+        <form action="{% url 'journal:entry_info' entry_id=entry.id %}">
+            <button class="btn btn-primary">Read</button>
+        </form>
+    </div>
+</div>
 {% empty %}
-<p>No entries yet</p>
+<p>No entries added yet</p>
 {% endfor %}
 {% endblock content %}

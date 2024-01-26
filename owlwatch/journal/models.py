@@ -15,4 +15,6 @@ class Entry(models.Model):
 
     def __str__(self):
         """String representation of our entry model."""
-        return self.title
+        if len(self.text) <= 50:
+            return self.text
+        return self.text[:50] + "..."
