@@ -10,5 +10,6 @@
     {% csrf_token %}
     {% bootstrap_form form %}
     {% bootstrap_button button_type="submit" button_class="btn-primary" content="Save" %}
+    <a href="{% url 'journal:entries' user_id %}" class="btn btn-secondary ms-1">Cancel</a>
 </form>
 {% endblock content %}

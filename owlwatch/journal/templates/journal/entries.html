@@ -6,21 +6,19 @@
 {% endblock page_header %}
 
 {% block content %}
-<form action="{% url 'journal:add_entry' user_id=user_id %}" class="mb-4">
-    {% csrf_token %}
-    <button type="submit" class="btn btn-primary">Add entry</button>
-</form>
+<a href="{% url 'journal:add_entry' user_id=user_id %}" class="btn btn-primary mb-4">Add entry</a>
 {% for entry in entries %}
 <div class="card bg-secondary mb-3">
     <div class="card-header d-flex justify-content-between">
-        <div>{{ entry.title }}</div>
+        <div>
+            <h4>{{ entry.title }}</h4>
+        </div>
         <div>{{ entry.created_date }}</div>
     </div>
     <div class="card-body">
         <p class="card-text">{{ entry }}</p>
-        <form action="{% url 'journal:entry_info' entry_id=entry.id %}">
-            <button class="btn btn-primary">Read</button>
-        </form>
+        <a href="{% url 'journal:entry_info' entry_id=entry.id %}" class="btn btn-primary">
+            Read<i class="bi bi-arrow-right ms-1"></i></a>
     </div>
 </div>
 {% empty %}
