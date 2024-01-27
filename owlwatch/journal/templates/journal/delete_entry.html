@@ -2,14 +2,13 @@
 {% load django_bootstrap5 %}
 
 {% block page_header %}
-<h1>{{ entry.title }}</h1>
+<h1>Delete {{ entry.title }}?</h1>
 {% endblock page_header %}
 
 {% block content %}
-<form action="{% url 'journal:edit_entry' entry_id=entry.id %}" method="POST">
+<form action="{% url 'journal:delete_entry' entry_id=entry.id %}" method="POST">
     {% csrf_token %}
-    {% bootstrap_form form %}
-    {% bootstrap_button button_type="submit" button_class="btn btn-primary" content="Save" %}
+    {% bootstrap_button button_type="submit" button_class="btn btn-danger" content="Delete" %}
     <a href="{% url 'journal:entry_info' entry_id=entry.id %}" class="btn btn-secondary ms-1">Cancel</a>
 </form>
 {% endblock content %}

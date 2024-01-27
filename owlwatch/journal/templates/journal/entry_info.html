@@ -6,12 +6,13 @@
     <h1>{{ entry.title }}</h1>
     <div>
         <a href="{% url 'journal:edit_entry' entry_id=entry.id %}" class="btn btn-secondary">Edit</a>
-        <a class="btn btn-danger ms-1">Delete</a>
+        <a href="{% url 'journal:delete_entry' entry_id=entry.id %}" class="btn btn-danger ms-1">Delete</a>
     </div>
 </div>
 {% endblock page_header %}
 
 {% block content %}
-<p>{{ entry.text }}</p>
-<a href="{% url 'journal:entries' user_id=user_id %}" class="btn btn-primary">Entries<i class="bi bi-arrow-left ms-1"></i></a>
+<p>{{ entry.text|linebreaksbr }}</p>
+<a href="{% url 'journal:entries' user_id=user_id %}" class="btn btn-primary">
+    Return<i class="bi bi-arrow-left ms-1"></i></a>
 {% endblock content %}
